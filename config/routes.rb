@@ -3,12 +3,17 @@
 
 Rails.application.routes.draw do
   devise_scope :user do
+
     resources :themes
     root 'users/sessions#new'
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
 
 
+
+
+
+  end
 
   devise_for :users
   resources :dashboard
