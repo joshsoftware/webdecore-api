@@ -1,0 +1,23 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title WebDecor
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'http://192.168.1.79:3000/output.js'
+  %body
+    - if notice
+      %p.alert.alert-success= notice
+    - if alert
+      %p.alert.alert-danger= alert
+    - if user_signed_in?
+      Logged in as
+      = succeed "." do
+        %strong= current_user.email
+      = link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link'
+      |
+      \#{link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'}
+    = yield
