@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # frozen_string_literal: true
 
 require 'html2haml/html'
@@ -23,3 +24,28 @@ namespace :hamlify do
     puts 'Successfully Hamilyfied.'
   end
 end
+
+
+
+
+
+
+
+
+
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
