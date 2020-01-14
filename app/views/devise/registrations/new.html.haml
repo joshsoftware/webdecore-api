@@ -1,0 +1,23 @@
+.jumbotron.text-center.p-3
+  %h1.display-4 WEB Decor
+.container
+  .row
+    .col-md-4.offset-md-4.border.border-dark.rounded.p-4
+      %h2 Sign up
+      = bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+        = render "devise/shared/error_messages", resource: resource
+        .field
+          = f.email_field :email, autofocus: true, autocomplete: "email"
+        .field
+          = f.label :password
+          - if @minimum_password_length
+            %em
+              (#{@minimum_password_length} characters minimum)
+          %br/
+          = f.password_field :password, autocomplete: "new-password", hide_label: true
+          = f.password_field :password_confirmation, autocomplete: "new-password"
+        .actions
+          = f.submit "Sign up", class: "btn btn-primary btn-block"
+        %br/
+      %p
+        Already have account? #{render "devise/shared/links"}

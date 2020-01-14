@@ -1,0 +1,13 @@
+.jumbotron.text-center.p-3
+  %h1.display-4 WEB Decor
+.container
+  .row
+    .col-md-4.offset-md-4.border.border-dark.rounded.p-4
+      %h2 Forgot password?
+      = bootstrap_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+        = render "devise/shared/error_messages", resource: resource
+        .field
+          = f.email_field :email, autofocus: true, autocomplete: "email"
+        .actions
+          = f.submit "Reset Password", class:"btn btn-info btn-block"
+        = render "devise/shared/links"
