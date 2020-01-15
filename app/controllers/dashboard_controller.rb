@@ -1,9 +1,6 @@
 class DashboardController < ApplicationController
   def index
-
-  end
-
-  def show
-    
+     @id = current_user.id
+     @user = User.find_by_id(@id)
   end
 end
