@@ -34,3 +34,4 @@ en:
   activerecord:
     exceptions:
       record_not_found: "Record Not Found"
+  user_not_authorized: "You are not authorized"
