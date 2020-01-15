@@ -25,13 +25,9 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap', '~> 4.4', '>= 4.4.1'
 
-
 gem 'bootstrap_form', '~> 4.3'
 gem 'jquery-rails'
 gem 'popper_js', '~> 1.14.5'
-
-
-
 
 gem 'jquery-rails'
 
@@ -41,11 +37,14 @@ gem 'rake-minify', '~> 0.4.0'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
+
 gem 'haml-rails', '~> 2.0', '>= 2.0.1'
 
 gem 'haml-rails', '~> 2.0', '>= 2.0.1'
 
 gem 'rake-minify', '~> 0.4.0'
+
+gem 'pundit', '~> 1.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -60,13 +59,10 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-
   gem 'hpricot'
-
   gem 'pry'
-
-
   gem 'ruby_parser'
+
 end
 
 group :test do
@@ -79,6 +75,7 @@ end
 
 gem 'carrierwave', '~> 0.11.2'
 gem 'devise', '~> 4.2'
+gem 'carrierwave', '~> 0.11.2'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 

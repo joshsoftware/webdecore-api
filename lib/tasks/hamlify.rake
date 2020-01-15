@@ -1,6 +1,5 @@
-<<<<<<< HEAD
-# frozen_string_literal: true
 
+# frozen_string_literal: true
 require 'html2haml/html'
 namespace :hamlify do
   desc 'Convert ERB to HAML'
@@ -24,28 +23,3 @@ namespace :hamlify do
     puts 'Successfully Hamilyfied.'
   end
 end
-
-
-
-
-
-
-
-
-
-
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
