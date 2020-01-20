@@ -3,9 +3,9 @@
 one:
   file: MyString
   file_type: MyString
-  user: one
+  theme: one
 
 two:
   file: MyString
   file_type: MyString
-  user: two
+  theme: two

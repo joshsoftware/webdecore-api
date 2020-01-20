@@ -1,0 +1,18 @@
+.jumbotron.text-center.p-3
+  %h1.display-4 Web Decor
+.container
+  .row
+    .col-md-4.offset-md-4.border.p-4
+      Theme Added Successfully......!
+      %br
+      %br
+      Name:
+      = @theme.theme_name
+      %br
+      State:
+      = @theme.state
+      %br
+      Animation:
+      = @theme.animation
+      .p-4
+      =link_to "View all Themes" , themes_url

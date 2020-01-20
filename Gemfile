@@ -50,6 +50,7 @@ group :development do
 
   gem 'hpricot'
   gem 'ruby_parser'
+  gem 'pry'
 end
 
 group :test do
