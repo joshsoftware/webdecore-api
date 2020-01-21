@@ -7,6 +7,11 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_up_path_for(resource_or_scope)
-    dashboard_index_url
+    users_index_url
   end
+
+  def after_sign_out_path_for(resource_or_scope)
+    user_session_url
+  end
+
 end

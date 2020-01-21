@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
-  devise_scope :user do
-    root 'devise/sessions#new'
-  end
+
   devise_for :users
+  devise_scope :user do
+    resources :themes
+    root 'devise/sessions#new'
+    get '/users/sign_out' => 'devise/sessions#destroy'
+  end
   resources :dashboard
-# For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+      # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

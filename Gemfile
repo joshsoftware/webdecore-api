@@ -31,7 +31,11 @@ gem 'rake-minify', '~> 0.4.0'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
+
 gem 'haml-rails', '~> 2.0', '>= 2.0.1'
+
+gem 'rake-minify', '~> 0.4.0'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -48,6 +52,7 @@ group :development do
 
   gem 'hpricot'
   gem 'ruby_parser'
+  gem 'pry'
 end
 
 group :test do
@@ -59,5 +64,6 @@ group :test do
 end
 
 gem 'devise', '~> 4.2'
+gem 'carrierwave', '~> 0.11.2'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
