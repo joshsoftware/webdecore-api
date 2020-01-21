@@ -67,3 +67,7 @@ gem 'devise', '~> 4.2'
 gem 'carrierwave', '~> 0.11.2'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'rake-minify', '~> 0.4.0'
+
+gem 'rake', '<11'
