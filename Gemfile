@@ -24,6 +24,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootstrap', '~> 4.4', '>= 4.4.1'
 gem 'bootstrap_form', '~> 4.3'
 gem 'jquery-rails'
+gem 'popper_js', '~> 1.14.5'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -34,6 +35,7 @@ gem 'haml-rails', '~> 2.0', '>= 2.0.1'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'rspec-rails', '~> 3.4', '>= 3.4.2'
 end
 
 group :development do

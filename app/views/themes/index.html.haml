@@ -1,0 +1,21 @@
+.container-fluid
+  .row
+    .col-md-4.offset-md-4.p-4.mt-5
+      %h3 Listing Themes
+      %br
+      %table.table.table-hover
+        %thead.thead-light
+          %tr
+            %th Theme Name
+            %th State
+            %th Animation
+        %tbody
+        - @themes.each do |theme|
+          %tr
+            %td= theme.theme_name
+            %td= theme.state
+            %td= theme.animation
+  .row
+    .col-lg-4.offset-lg-4.col-md-10.offset-md-1.text-center
+      %button.btn.btn-primary
+        =link_to "Create Theme", new_theme_url, {style: 'color: white;'}
