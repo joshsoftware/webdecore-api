@@ -24,6 +24,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootstrap', '~> 4.4', '>= 4.4.1'
 gem 'bootstrap_form', '~> 4.3'
 gem 'jquery-rails'
+gem 'popper_js', '~> 1.14.5'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
