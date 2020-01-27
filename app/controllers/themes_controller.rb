@@ -1,5 +1,6 @@
-class ThemesController < ApplicationController
+# frozen_string_literal: true
 
+class ThemesController < ApplicationController
   def index
     # @themes = Theme.find_by_user_id(current_user.id)
     # binding.pry
@@ -14,15 +15,13 @@ class ThemesController < ApplicationController
     @theme = Theme.new(theme_params)
     @theme.user_id = current_user.id
 
-    if @theme.state == "1"
-      @theme.state = "Active"
-    else
-      @theme.state = "InActive"
-    end
+    @theme.state = if @theme.state == '1'
+                     'Active'
+                   else
+                     'InActive'
+                   end
 
-    if @theme.save!
-      redirect_to @theme
-    end
+    redirect_to @theme if @theme.save!
   end
 
   def show
@@ -30,7 +29,8 @@ class ThemesController < ApplicationController
   end
 
   private
-    def theme_params
-      params.require(:theme).permit(:user_id, :theme_name, :state ,:animation)
-    end
+
+  def theme_params
+    params.require(:theme).permit(:user_id, :theme_name, :state, :animation)
+  end
 end
