@@ -8,12 +8,12 @@
       %table{border: "1"}
         %tr
           %th Theme Name
-          %th State
+          %th Active
           %th Animation
         - @themes.each do |theme|
           %tr
             %td= theme.theme_name
-            %td= theme.state
+            %td= theme.active
             %td= theme.animation
       .p-4
       =link_to "Create Theme" , new_theme_url
