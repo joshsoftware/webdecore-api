@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class DashboardController < ApplicationController
   def index
-     @id = current_user.id
-     @user = User.find_by_id(@id)
+    @id = current_user.id
+    @user = User.find_by_id(@id)
   end
 end
