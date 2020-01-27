@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 namespace :demo do
-  desc "Demo running via rake tasks"
+  desc 'Demo running via rake tasks'
   task say_hello: :environment do
-    puts "Hello Rake"
+    puts 'Hello Rake'
   end
 end
