@@ -2,8 +2,6 @@
 
 class ThemesController < ApplicationController
   def index
-    # @themes = Theme.find_by_user_id(current_user.id)
-    # binding.pry
     @themes = Theme.all
   end
 
@@ -12,25 +10,27 @@ class ThemesController < ApplicationController
   end
 
   def create
-    @theme = Theme.new(theme_params)
-    @theme.user_id = current_user.id
-
-    @theme.state = if @theme.state == '1'
-                     'Active'
-                   else
-                     'InActive'
-                   end
-
-    redirect_to @theme if @theme.save!
+    @theme = current_user.themes.new(theme_params)
+    if @theme.save!
+      redirect_to @theme
+    else
+      render 'new'
+    end
   end
 
   def show
-    @theme = Theme.find(params[:id])
+    @theme = Theme.find_by(id: params[:id])
+
+    unless @theme
+      flash[:alert] = t('activerecord.exceptions.record_not_found')
+      redirect_to themes_path
+    end
   end
 
   private
+  
+    def theme_params
+      params.require(:theme).permit(:user_id, :theme_name, :active ,:animation)
+    end
 
-  def theme_params
-    params.require(:theme).permit(:user_id, :theme_name, :state, :animation)
-  end
 end

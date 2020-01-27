@@ -6,7 +6,7 @@
       = bootstrap_form_with(model: @theme, url: themes_path) do  |f|
         = f.text_field :theme_name
         = f.label :Theme_State
-        = f.check_box :state, :label => "Active"
+        = f.check_box :active, :label => "Active"
         %br
         = f.select :animation, [["Diwali", "Diwali"], ["Holi", "Holi"],["Christmas", "Christmas"] ] , :label => "Select Animation "
         = f.submit "Create"
