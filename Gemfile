@@ -72,3 +72,5 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'rake-minify', '~> 0.4.0'
 
 gem 'rake', '<11'
+
+gem 'rubocop', '~> 0.79.0', require: false
