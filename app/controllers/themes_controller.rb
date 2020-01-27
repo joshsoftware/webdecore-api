@@ -1,9 +1,9 @@
 class ThemesController < ApplicationController
 
   def index
-    # @themes = Theme.find_by_user_id(current_user.id)
+    @themes = Theme.where(user_id: current_user.id)
     # binding.pry
-    @themes = Theme.all
+    # @themes = Theme.all
   end
 
   def new
