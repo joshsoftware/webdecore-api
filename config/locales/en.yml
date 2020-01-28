@@ -31,3 +31,6 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    exceptions:
+      record_not_found: "Record Not Found"
