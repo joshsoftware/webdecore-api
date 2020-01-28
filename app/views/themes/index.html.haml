@@ -1,19 +1,21 @@
-.jumbotron.text-center.p-3
-  %h1.display-4 Web Decor
-.container
+.container-fluid
   .row
-    .col-md-4.offset-md-4.border.p-4
+    .col-md-4.offset-md-4.p-4.mt-5
       %h3 Listing Themes
       %br
-      %table{border: "1"}
-        %tr
-          %th Theme Name
-          %th Active
-          %th Animation
+      %table.table.table-hover
+        %thead.thead-light
+          %tr
+            %th Theme Name
+            %th State
+            %th Animation
+        %tbody
         - @themes.each do |theme|
           %tr
             %td= theme.theme_name
             %td= theme.active
             %td= theme.animation
-      .p-4
-      =link_to "Create Theme" , new_theme_url
+  .row
+    .col-lg-4.offset-lg-4.col-md-10.offset-md-1.text-center
+      %button.btn.btn-primary
+        =link_to "Create Theme", new_theme_url, {style: 'color: white;'}

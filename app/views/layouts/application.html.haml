@@ -1,19 +1,25 @@
 !!!
-%html
+%html.h-100
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title WebDecor
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag 'https://use.fontawesome.com/releases/v5.7.0/css/all.css'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
-  %body
+    = javascript_pack_tag 'alert'
+  %body.h-100
     - if notice
-      %p.alert.alert-success= notice
+      #message.alert.alert-success
+        %span.fa.fa-check-circle.fa-lg
+        = notice
     - if alert
-      %p.alert.alert-danger= alert
+      #message.alert.alert-danger
+        %span.fa.fa-exclamation-circle.fa-lg
+        = alert
     - if user_signed_in?
-      %nav.navbar.navbar-expand-lg.navbar-light.bg-light.mb-5
+      %nav.navbar.navbar-expand-lg.navbar-light.bg-light.mb-3
         = link_to 'WebDecor', dashboard_index_path, class:"navbar-brand"
         %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
           %span.navbar-toggler-icon

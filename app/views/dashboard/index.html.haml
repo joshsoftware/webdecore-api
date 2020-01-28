@@ -1,8 +1,24 @@
-.container
-  .row
-    .col-md-12.border.p-4.text-center
-      =link_to "Our Animations"
-      .p-4
-      =link_to "Add Theme" , new_theme_path
-      .p-4
-      =link_to "Enlist"
+%h2.text-center.m-4
+  User Dashboard
+.container-fluid.h-75
+  .row.h-100
+    .col-lg-6.border-right.p-4.text-center
+      %h2 Our Animations
+      = form_with(model: @theme)
+      .row.pt-5.pb-5
+        .col-lg-5.offset-lg-1
+          %label.col-form-label
+            Select Animation:
+        .col-lg-5
+          = select_tag(:animation,options_for_select([['Diwali',1],['Holi',2]]),class: "form-control")
+      .row
+        .col-lg-4.offset-lg-4
+          %button.btn.btn-success
+            = link_to 'Show Demo', themes_path,{style: 'color: white;'}
+    .col-lg-6.border-left.p-4.text-center
+      %h2 Custom Animation
+      %span.fa.fa-plus.fa-lg.m-5
+        =link_to "Add Theme", new_theme_path
+      %br
+      %span.fa.fa-list.fa-lg
+        =link_to "List Themes", themes_path
