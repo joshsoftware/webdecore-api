@@ -9,7 +9,12 @@
     = stylesheet_link_tag 'https://use.fontawesome.com/releases/v5.7.0/css/all.css'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'alert'
-  %body.h-100
+    = javascript_pack_tag 'demoanimation'
+
+    %script{:src => "https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.5.9/lottie.js", :type => "text/javascript"}
+
+  %body#b.h-100
+    -# #lottie{:style =>"position: fixed; z-index: -999; display: block;"}
     - if notice
       #message.alert.alert-success
         %span.fa.fa-check-circle.fa-lg
@@ -31,4 +36,5 @@
               .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
                 = link_to 'Edit profile', edit_user_registration_path, :class => 'dropdown-item'
                 = link_to "Logout", destroy_user_session_path, method: :delete, :class => 'dropdown-item'
+    -# %lottie-player{ :autoplay => "", :background => "transparent", :loop => "", :speed => "1", :src => "/9514-celebration.json", :style => "width: 80%; position:fixed; display:block;"}
     = yield
