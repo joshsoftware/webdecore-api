@@ -5,6 +5,11 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.5'
 
+gem 'carrierwave', '~> 2.0'
+
+gem 'net-ssh'
+
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
 # Use postgresql as the database for Active Record
@@ -73,7 +78,7 @@ group :test do
   gem 'webdrivers'
 end
 
-gem 'carrierwave', '~> 0.11.2'
+#gem 'carrierwave', '~> 0.11.2'
 gem 'devise', '~> 4.2'
 gem 'carrierwave', '~> 0.11.2'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

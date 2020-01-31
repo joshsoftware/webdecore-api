@@ -1,0 +1,18 @@
+<button class="btn btn-success" style="color: white"><%= link_to 'New Category', new_category_path()%></button>
+<% n = 0 %>
+<% @outer.times do %>
+	<div class="card-deck my-5">
+	  <% 4.times do %>
+	  <% break if n >= @count %>
+		<div class="card col-md-3 mx-0" style="height: 35rem" >
+			<img src="<%= @categories[n].picture.url%>" alt="hii" class="img-fluid" style="height: 40%">
+		  <div class="card-body">
+		    <h5 class="card-title text-center" ><%= @categories[n].category_name %></h5>
+		    <p class="card-text text-muted text-center"><%= @categories[n].category_description%></p>
+		    <button class="btn btn-success text-center" style="color: white; display:block;"><%= link_to 'click here',category_path(@categories[n].id)%></button>
+		  </div>
+		</div>
+		<% n+=1 %>
+		<% end %>
+	</div>
+<% end %>
