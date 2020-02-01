@@ -1,5 +1,4 @@
-# encoding: utf-8
-
+# frozen_string_literal: true
 
 class PictureUploader < CarrierWave::Uploader::Base
 category model and controller added:app/uploaders/picture_uploader.rb

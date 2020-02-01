@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class UpdateReferenceToCategoryId < ActiveRecord::Migration[6.0]
   def change
-  	rename_column :animation_data, :secondary_categories_id, :categories_id
+    rename_column :animation_data, :secondary_categories_id, :categories_id
   end
 end
