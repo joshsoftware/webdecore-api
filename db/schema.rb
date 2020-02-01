@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,104 +12,103 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_31_095709) do
-
+ActiveRecord::Schema.define(version: 20_200_131_095_709) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "animation_data", force: :cascade do |t|
-    t.string "animation_name"
-    t.float "animation_price"
-    t.bigint "categories_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["categories_id"], name: "index_animation_data_on_categories_id"
+  create_table 'animation_data', force: :cascade do |t|
+    t.string 'animation_name'
+    t.float 'animation_price'
+    t.bigint 'categories_id'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['categories_id'], name: 'index_animation_data_on_categories_id'
   end
 
-  create_table "animations", force: :cascade do |t|
-    t.string "category1"
-    t.string "category2"
-    t.string "animation_name"
-    t.integer "animation_price"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+  create_table 'animations', force: :cascade do |t|
+    t.string 'category1'
+    t.string 'category2'
+    t.string 'animation_name'
+    t.integer 'animation_price'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
   end
 
-  create_table "assets", force: :cascade do |t|
-    t.string "file"
-    t.string "file_type"
-    t.bigint "theme_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["theme_id"], name: "index_assets_on_theme_id"
+  create_table 'assets', force: :cascade do |t|
+    t.string 'file'
+    t.string 'file_type'
+    t.bigint 'theme_id', null: false
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['theme_id'], name: 'index_assets_on_theme_id'
   end
 
-  create_table "categories", force: :cascade do |t|
-    t.string "category_name"
-    t.string "category_description"
-    t.string "picture"
-    t.bigint "primarycategory_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["primarycategory_id"], name: "index_categories_on_primarycategory_id"
+  create_table 'categories', force: :cascade do |t|
+    t.string 'category_name'
+    t.string 'category_description'
+    t.string 'picture'
+    t.bigint 'primarycategory_id'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['primarycategory_id'], name: 'index_categories_on_primarycategory_id'
   end
 
-  create_table "primary_categories", force: :cascade do |t|
-    t.string "primary_category_name"
-    t.string "primary_category_description"
-    t.string "picture"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+  create_table 'primary_categories', force: :cascade do |t|
+    t.string 'primary_category_name'
+    t.string 'primary_category_description'
+    t.string 'picture'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
   end
 
-  create_table "secondary_categories", force: :cascade do |t|
-    t.string "secondary_category_name"
-    t.string "secondary_category_description"
-    t.string "picture"
-    t.bigint "primary_categories_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["primary_categories_id"], name: "index_secondary_categories_on_primary_categories_id"
+  create_table 'secondary_categories', force: :cascade do |t|
+    t.string 'secondary_category_name'
+    t.string 'secondary_category_description'
+    t.string 'picture'
+    t.bigint 'primary_categories_id'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['primary_categories_id'], name: 'index_secondary_categories_on_primary_categories_id'
   end
 
-  create_table "themes", force: :cascade do |t|
-    t.string "theme_name"
-    t.boolean "active"
-    t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "animation"
-    t.index ["user_id"], name: "index_themes_on_user_id"
+  create_table 'themes', force: :cascade do |t|
+    t.string 'theme_name'
+    t.boolean 'active'
+    t.bigint 'user_id', null: false
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.string 'animation'
+    t.index ['user_id'], name: 'index_themes_on_user_id'
   end
 
-  create_table "user_animations", force: :cascade do |t|
-    t.date "start_date"
-    t.date "end_date"
-    t.bigint "user_id"
-    t.bigint "animation_data_id"
-    t.string "status"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "location"
-    t.index ["animation_data_id"], name: "index_user_animations_on_animation_data_id"
-    t.index ["user_id"], name: "index_user_animations_on_user_id"
+  create_table 'user_animations', force: :cascade do |t|
+    t.date 'start_date'
+    t.date 'end_date'
+    t.bigint 'user_id'
+    t.bigint 'animation_data_id'
+    t.string 'status'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.string 'location'
+    t.index ['animation_data_id'], name: 'index_user_animations_on_animation_data_id'
+    t.index ['user_id'], name: 'index_user_animations_on_user_id'
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "contact_number"
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  create_table 'users', force: :cascade do |t|
+    t.string 'first_name'
+    t.string 'last_name'
+    t.string 'contact_number'
+    t.string 'email', default: '', null: false
+    t.string 'encrypted_password', default: '', null: false
+    t.string 'reset_password_token'
+    t.datetime 'reset_password_sent_at'
+    t.datetime 'remember_created_at'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['email'], name: 'index_users_on_email', unique: true
+    t.index ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
   end
 
-  add_foreign_key "assets", "themes"
-  add_foreign_key "themes", "users"
+  add_foreign_key 'assets', 'themes'
+  add_foreign_key 'themes', 'users'
 end

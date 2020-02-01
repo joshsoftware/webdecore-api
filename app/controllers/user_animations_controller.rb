@@ -1,5 +1,5 @@
+# frozen_string_literal: true
+
 class UserAnimationsController < ApplicationController
-	def index
-		
-	end
+  def index; end
 end
