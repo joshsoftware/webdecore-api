@@ -1,0 +1,15 @@
+- n = 0
+- count = @animations.count
+- outer = (count - 1) / 4 + 1
+- outer.times do
+  .card-deck.my-5
+    - 4.times do
+      - break if n >= count
+      .card.col-md-3.mx-0{:style => "height: 35rem"}
+        %img.img-fluid{:alt => "hii", :src => "#{@animations[n].picture.url}", :style => "height: 40%"}/
+        .card-body
+          %h5.card-title.text-center= @animations[n].animation_name
+          %p.card-text.text-center Animation Price: #{@animations[n].animation_price} 
+          %button.btn.btn-success.text-center{:style => "color: white; display:block; float:left"}= link_to 'Show Demo'
+          %button.btn.btn-success.text-center{:style => "color: white; display:block; float:right"}= link_to 'Purchase',category_animation_data_path()
+      - n+=1

@@ -1,0 +1,14 @@
+- n = 0
+- count = @categories.count
+- outer = (count - 1) / 4 + 1
+- outer.times do
+  .card-deck.my-5
+    - 4.times do
+      - break if n >= count
+      .card.col-md-3.mx-0{:style => "height: 35rem"}
+        %img.img-fluid{:alt => "hii", :src => "#{@categories[n].picture.url}", :style => "height: 40%"}/
+        .card-body
+          %h5.card-title.text-center= @categories[n].category_name
+          %p.card-text.text-muted.text-center= @categories[n].category_description
+          %button.btn.btn-success.text-center{:style => "color: white; display:block;"}= link_to 'Click Here',category_animation_data_path(@categories[n].id)
+      - n+=1

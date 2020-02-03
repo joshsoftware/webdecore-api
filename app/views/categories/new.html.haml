@@ -1,0 +1,16 @@
+%h1 Add Primary Category
+= form_with scope: :category, url: categories_path,local: true do |form|
+  %p
+    = form.label :Primary_Category_Name
+    %br/
+    = form.text_field :category_name
+  %p
+    = form.label :Primary_Category_Description
+    %br/
+    = form.text_field :category_description
+  %p
+    = form.label :Primary_Category_Image
+    %br/
+    = form.file_field :picture
+  %p
+    = form.submit
