@@ -28,8 +28,7 @@ class ThemesController < ApplicationController
 
   private
 
-    def theme_params
-      params.require(:theme).permit(:user_id, :theme_name, :active ,:animation)
-    end
-
+  def theme_params
+    params.require(:theme).permit(:user_id, :theme_name, :active, :animation)
+  end
 end

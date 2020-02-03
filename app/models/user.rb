@@ -6,4 +6,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :themes
+  has_many :user_animations
+  has_many :animation_datas, through: :user_animations
 end
