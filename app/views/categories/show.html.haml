@@ -1,8 +1,10 @@
 - n = 0
-- @outer.times do
+- count = @categories.count
+- outer = (count - 1) / 4 + 1
+- outer.times do
   .card-deck.my-5
     - 4.times do
-      - break if n >= @count
+      - break if n >= count
       .card.col-md-3.mx-0{:style => "height: 35rem"}
         %img.img-fluid{:alt => "hii", :src => "#{@categories[n].picture.url}", :style => "height: 40%"}/
         .card-body

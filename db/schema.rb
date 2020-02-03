@@ -12,17 +12,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_200_131_095_709) do
+ActiveRecord::Schema.define(version: 20_200_201_112_647) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
   create_table 'animation_data', force: :cascade do |t|
     t.string 'animation_name'
     t.float 'animation_price'
-    t.bigint 'categories_id'
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
-    t.index ['categories_id'], name: 'index_animation_data_on_categories_id'
+    t.string 'picture'
+    t.bigint 'category_id'
+    t.index ['category_id'], name: 'index_animation_data_on_category_id'
   end
 
   create_table "categories", force: :cascade do |t|

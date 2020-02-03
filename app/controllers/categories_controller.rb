@@ -2,14 +2,11 @@
 
 class CategoriesController < ApplicationController
   def index
-    @count = Category.primary.count
-    @outer = (@count - 1) / 4 + 1
     @categories = Category.primary
   end
 
   def new
     @primary_category = Category.new
-    render 'new1.html.erb' if params[:id]
   end
 
   def create
@@ -18,8 +15,6 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @count = Category.find_by(id: params[:id]).secondary_categories.count
-    @outer = (@count - 1) / 4 + 1
     @categories = Category.find_by(id: params[:id]).secondary_categories
   end
 
