@@ -12,41 +12,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_200_201_112_647) do
+
+ActiveRecord::Schema.define(version: 20_200_131_095_709) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
   create_table 'animation_data', force: :cascade do |t|
     t.string 'animation_name'
     t.float 'animation_price'
+    t.bigint 'categories_id'
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
-    t.string 'picture'
-    t.bigint 'category_id'
-    t.index ['category_id'], name: 'index_animation_data_on_category_id'
+    t.index ['categories_id'], name: 'index_animation_data_on_categories_id'
   end
-
-  create_table "categories", force: :cascade do |t|
-    t.string "category_name"
-    t.string "category_description"
-    t.string "picture"
-    t.bigint "primarycategory_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["primarycategory_id"], name: "index_categories_on_primarycategory_id"
-  end
-
-  create_table "user_animations", force: :cascade do |t|
-    t.date "start_date"
-    t.date "end_date"
-    t.bigint "user_id"
-    t.bigint "animation_data_id"
-    t.string "status"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "location"
-    t.index ["animation_data_id"], name: "index_user_animations_on_animation_data_id"
-    t.index ["user_id"], name: "index_user_animations_on_user_id"
 
   create_table 'categories', force: :cascade do |t|
     t.string 'category_name'
@@ -56,16 +34,6 @@ ActiveRecord::Schema.define(version: 20_200_201_112_647) do
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
     t.index ['primarycategory_id'], name: 'index_categories_on_primarycategory_id'
-  end
-
-  create_table 'themes', force: :cascade do |t|
-    t.string 'theme_name'
-    t.boolean 'active'
-    t.bigint 'user_id', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.string 'animation'
-    t.index ['user_id'], name: 'index_themes_on_user_id'
   end
 
   create_table 'user_animations', force: :cascade do |t|
@@ -96,4 +64,6 @@ ActiveRecord::Schema.define(version: 20_200_201_112_647) do
     t.index ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
   end
 
+  add_foreign_key 'assets', 'themes'
+  add_foreign_key 'themes', 'users'
 end

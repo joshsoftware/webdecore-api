@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class PictureUploader < CarrierWave::Uploader::Base
-category model and controller added:app/uploaders/picture_uploader.rb
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
