@@ -11,5 +11,5 @@
           %h5.card-title.text-center= @animations[n].animation_name
           %p.card-text.text-center Animation Price: #{@animations[n].animation_price} 
           %button.btn.btn-success.text-center{:style => "color: white; display:block; float:left"}= link_to 'Show Demo'
-          %button.btn.btn-success.text-center{:style => "color: white; display:block; float:right"}= link_to 'Purchase',category_animation_data_path()
+          %button.btn.btn-success.text-center{:style => "color: white; display:block; float:right"}= link_to 'Purchase',animation_data_path
       - n+=1
