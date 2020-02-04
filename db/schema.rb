@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_01_112647) do
+ActiveRecord::Schema.define(version: 2020_02_04_054559) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,7 +22,22 @@ ActiveRecord::Schema.define(version: 2020_02_01_112647) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "picture"
     t.bigint "category_id"
+    t.json "animation_json"
     t.index ["category_id"], name: "index_animation_data_on_category_id"
+  end
+
+  create_table "animations", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "assets", force: :cascade do |t|
+    t.string "file"
+    t.string "file_type"
+    t.bigint "theme_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["theme_id"], name: "index_assets_on_theme_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -73,5 +88,6 @@ ActiveRecord::Schema.define(version: 2020_02_01_112647) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "assets", "themes"
   add_foreign_key "themes", "users"
 end

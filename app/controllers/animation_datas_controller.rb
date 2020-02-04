@@ -2,8 +2,10 @@
 
 class AnimationDatasController < ApplicationController
 
+  
   def show
-    @animations = AnimationData.where(category_id: params[:category_id])
+    pp params
+    @animations = AnimationData.where(category_id: params[:sub_category_id])
   end
   
 end

@@ -14,6 +14,15 @@ class CategoriesController < ApplicationController
     redirect_to categories_path
   end
 
+  def sub_categories
+    #@secondary_categories = Category.create(permit_params)
+    @categories = Category.find_by(id: params[:id]).secondary_categories
+    @cat = Category.find_by(id: params[:id])
+    # @categories = Category.find_by(primarycategory_id: params[:id])
+    # redirect_to categories_path
+  end
+
+
   def show
     @categories = Category.find_by(id: params[:id]).secondary_categories
   end
