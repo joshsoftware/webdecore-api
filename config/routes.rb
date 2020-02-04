@@ -27,10 +27,4 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :api do  
-    namespace :v2 do
-      resources :animation_datas
-    end
-  end
-
 end
