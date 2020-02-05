@@ -15,7 +15,8 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @categories = Category.find_by(id: params[:id]).secondary_categories
+    @primary_category = Category.find_by(id: params[:id])
+    @categories = @primary_category.secondary_categories
   end
 
   private

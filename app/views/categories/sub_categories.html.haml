@@ -1,4 +1,3 @@
-%button.btn.btn-success{:style => "color: white"}= link_to 'New Category', new_category_path()
 - n = 0
 - count = @categories.count
 - outer = (count - 1) / 4 + 1
@@ -12,7 +11,5 @@
           %h5.card-title.text-center= @categories[n].category_name
           %p.card-text.text-muted.text-center= @categories[n].category_description
           %button.btn.btn-success.text-center{:style => "color: white; display:block;"}
-            = link_to 'click here', sub_categories_path(@categories[n].id)
+            = link_to 'Click Here', animations_path(@primary_category.id,@categories[n].id)
       - n+=1
-
-
