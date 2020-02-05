@@ -2,7 +2,7 @@
 
 Rails.application.routes.draw do
 
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'users/registrations' }
   devise_scope :user do
     root 'users/sessions#new'
     get '/users/sign_out' => 'devise/sessions#destroy'
@@ -23,12 +23,6 @@ Rails.application.routes.draw do
 
   namespace :api do  
     namespace :v1 do
-      resources :animation_datas
-    end
-  end
-
-  namespace :api do  
-    namespace :v2 do
       resources :animation_datas
     end
   end

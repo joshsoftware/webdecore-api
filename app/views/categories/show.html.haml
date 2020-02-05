@@ -10,5 +10,5 @@
         .card-body
           %h5.card-title.text-center= @categories[n].category_name
           %p.card-text.text-muted.text-center= @categories[n].category_description
-          %button.btn.btn-success.text-center{:style => "color: white; display:block;"}= link_to 'Click Here',category_animation_data_path(@categories[n].id)
+          %button.btn.btn-success.text-center{:style => "color: white; display:block;"}= link_to 'Click Here', animations_path(@primary_category.id, @categories[n].id)
       - n+=1
