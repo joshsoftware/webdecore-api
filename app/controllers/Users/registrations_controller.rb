@@ -3,6 +3,8 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
+  after_action :create_user_file, only: [:create, :delete]
+
   # # GET /resource/sign_up
   #  def new
   #    super
@@ -37,13 +39,24 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  private
 
-  # If you have extra params to permit, append them to the sanitizer.
+    def create_user_file
+      user_id = current_user.id
+      file_name = "public/animations/#{user_id}.min.js"
+      fileobject = File.new(file_name, "w+")
+      fileobject.close()
+      copy_file_contents(file_name)
+    end
 
-
-  def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: %i[attribute first_name last_name contact_number])
-  end
+    def copy_file_contents(file_name)
+      src = File.open("app/javascript/packs/global_animation_data.min.js")
+      data = src.read()
+      dest = File.open(file_name, "w+")
+      dest.write("var user= #{current_user.id};")
+      dest.write(data)
+      src.close()
+      dest.close()
+    end
 
 end

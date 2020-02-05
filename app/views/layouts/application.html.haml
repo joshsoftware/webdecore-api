@@ -9,8 +9,6 @@
     = stylesheet_link_tag 'https://use.fontawesome.com/releases/v5.7.0/css/all.css'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'alert'
-    = javascript_pack_tag 'demoanimation'
-
     %script{:src => "https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.5.9/lottie.js", :type => "text/javascript"}
 
   %body#b.h-100
@@ -38,3 +36,5 @@
                 = link_to "Logout", destroy_user_session_path, method: :delete, :class => 'dropdown-item'
     -# %lottie-player{ :autoplay => "", :background => "transparent", :loop => "", :speed => "1", :src => "/9514-celebration.json", :style => "width: 80%; position:fixed; display:block;"}
     = yield
+    = javascript_pack_tag 'load_animation.js'
+    = javascript_pack_tag 'demo_animation.js'

@@ -1,53 +1,52 @@
 var script = document.createElement('script');
 script.type = 'text/javascript';
 script.src = 'https://geoip-db.com/jsonp/';
-var h = document.getElementsByTagName('script')[0];
-h.parentNode.insertBefore(script, h);
+var element = document.getElementsByTagName('script')[0];
+element.parentNode.insertBefore(script, element);
 
 window.callback = function(data){
-  	country = data.country_name;
-    checkCountry(country);
-	}
-
-function setAnimationData (){
-	return animData = {
-			container: document.body,
-			animType: 'canvas',
-			loop: true,
-			prerender: true,
-			autoplay: true,
-			animationData: returnjson(),
-			rendererSettings: {
-				className: 'lottie',
-				preserveAspectRatio: 'none',
-			}
-	};
+  country = data.country_name;
+  checkCountry(country);
 }
+
+function setAnimationData (name){
+  return animData = {
+    container: document.body,
+    animType: 'canvas',
+    loop: true,
+    prerender: true,
+    autoplay: true,
+    path: name,
+    rendererSettings: {
+      className: 'lottie',
+      preserveAspectRatio: 'none',
+     }
+   };
+}
+
 function setStyle(){
-	var html = animData.container.getElementsByClassName("lottie")[0];
-	html.style.position = "fixed";
-	html.style.zIndex = -999;
-	html.style.top = 0;
-	html.style.left = 0;
+  var html = animData.container.getElementsByClassName("lottie")[0];
+  html.style.position = "fixed";
+  html.style.zIndex = -999;
+  html.style.top = 0;
+  html.style.left = 0;
 }
 
 function checkCountry(country){
   if (country == "India"){
-		animData = setAnimationData();
-		var anim = bodymovin.loadAnimation(animData);
-
-		setTimeout(function () {
-		    setStyle();
-		}, 100);
-	}
-	else {
-		animData = setAnimationData();
-		var anim = bodymovin.loadAnimation(animData);
-
-		setTimeout(function () {
-			setStyle();
-		}, 100);
-	}
+     animData = setAnimationData('/3415-snowman.json');
+     var anim = bodymovin.loadAnimation(animData);
+     setTimeout(function () {
+       setStyle();
+     }, 100);
+   }
+  else {
+    animData = setAnimationData('/12055-snowing.json');
+    var anim = bodymovin.loadAnimation(animData);
+    setTimeout(function () {
+      setStyle();
+  	}, 100);
+  }
 }
 
 function returnjson() {
