@@ -24,7 +24,30 @@ Rails.application.routes.draw do
   namespace :api do  
     namespace :v1 do
       resources :animation_datas
+      get '/animation_datas' , to: 'animation_datas#index'
     end
   end
 
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# namespace :api do
+#   namespace :v1 do
+#     resources :city_sports
+#     post '/city_sports/display', to: 'city_sports#displaysports'
+
+#   end
+# end
