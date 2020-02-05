@@ -12,5 +12,5 @@
           - name = @animations[n].animation_name
           %p.card-text.text-center Animation Price: #{@animations[n].animation_price}
           %button.btn.btn-success.text-center{:style => "color: white; display:block; float:left", :onclick => "check('#{name}')"}= 'Show Demo'
-          %button.btn.btn-success.text-center{:style => "color: white; display:block; float:right"}= link_to 'Purchase',category_animation_data_path()
+          %button.btn.btn-success.text-center{:style => "color: white; display:block; float:right"}= link_to 'Purchase'
       - n+=1
