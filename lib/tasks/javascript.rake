@@ -3,7 +3,7 @@
 require 'rake/minify'
 
 Rake::Minify.new(:minify_single) do
-  dir('lib/assets/javascript') do # we specify only the source directory
-    add('public/output3.js', ENV['file']) # the output file name is full path
+  dir('app/javascript/packs/') do # we specify only the source directory
+    add('app/javascript/packs/global_animation_data.min.js', 'global_animation_data.js') # the output file name is full path
   end
 end
