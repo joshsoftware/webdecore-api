@@ -116,6 +116,7 @@ GEM
       haml (>= 4.0.6, < 6.0)
       html2haml (>= 1.0.1)
       railties (>= 5.1)
+    hirb (0.7.3)
     hpricot (0.8.6)
     html2haml (2.2.0)
       erubis (~> 2.7.0)
@@ -302,6 +303,7 @@ DEPENDENCIES
   carrierwave (~> 2.0)
   devise (~> 4.2)
   haml-rails (~> 2.0, >= 2.0.1)
+  hirb
   hpricot
   jbuilder (~> 2.7)
   jquery-rails
