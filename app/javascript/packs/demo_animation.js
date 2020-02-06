@@ -1,5 +1,4 @@
 check = function(animation_name){
-  console.log('in check')
   var canvas = document.getElementsByTagName("canvas")[0];
   if(canvas !== undefined){
     document.body.removeChild(canvas);
