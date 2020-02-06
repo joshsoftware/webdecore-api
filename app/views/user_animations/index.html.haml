@@ -1,0 +1,14 @@
+.col-md-6.offset-md-3
+  %h1 My Orders
+  %table.table.table-hover
+    %tr
+      %th Animation Name
+      %th Start Date
+      %th End Date
+      %th Location
+    - @animations.each do |anim|
+      %tr
+        %td= anim.animation_data.animation_name
+        %td= anim.start_date
+        %td= anim.end_date
+        %td= anim.location
