@@ -1,51 +1,18 @@
 module Api
-    module V1
-        class AnimationDatasController < ApplicationController
-            skip_before_action :authenticate_user!
-            def index
-            #   @animation = AnimationData.where(category_id: params[:category_id])
-            #   render json: {data: @animation}   
-            # @user = User.first
-            puts params
-            @user_id = params['user_id']
-            @location = params['location']
-            @animation_record = UserAnimation.where(user_id: @user_id, location: @location)[0]
-            @animation_id = @animation_record.animation_data_id
-            @animation = AnimationData.find(@animation_id).animation_json
-            render json: @animation.as_json
+  module V1
+    class AnimationDatasController < ApplicationController
+      skip_before_action :authenticate_user!
+      def index
 
-            end
+        @animation_record = UserAnimation.find_by("user_id = ? AND location = ? AND start_date <= ? 
+        AND end_date >= ?", params['user_id'], params['location'], Date.today, Date.today)
+        if (@animation_record)
+          @animation = AnimationData.find(@animation_record.animation_data_id).animation_json
+          render json: @animation.as_json
+        else
+          render json: {}
         end
+      end
     end
+  end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-        
-  
-        
