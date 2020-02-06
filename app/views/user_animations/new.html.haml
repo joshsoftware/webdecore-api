@@ -1,0 +1,13 @@
+.container
+  .row
+    .col-lg-4.offset-lg-4
+      %h3 Fill Animation Details
+      =bootstrap_form_with scope: :user_animation, url: user_animations_path,local: true do |form|
+        %p
+          = form.date_field :start_date, min: Date.today, onchange: 'setDate(this.value)'
+        %p
+          = form.date_field :end_date, min: Date.today, id: 'end_date'
+        %p
+          = form.select :location, @locations
+          = form.submit
+=javascript_pack_tag 'demo_animation'
