@@ -1,20 +1,17 @@
 %h2.text-center.m-4
   User Dashboard
 .container-fluid.h-75
+  .row
+    .col.col-lg-8.offset-lg-2.bg-light.text-center
+      NOTE: Make sure you have included
+      %code &lt;script src="192.168.1.100:3000/#{current_user.id}.min.js"&gt
+      in your application.
   .row.h-100
     .col-lg-6.border-right.p-4.text-center
       %h2 Our Animations
-      = form_with(model: @theme)
       .row.pt-5.pb-5
-        .col-lg-5.offset-lg-1
-          %label.col-form-label
-            Select Animation:
-        .col-lg-5
-          = select_tag(:animation,options_for_select([['Diwali',1],['Holi',2]]),class: "form-control")
-      .row
         .col-lg-4.offset-lg-4
-          %button.btn.btn-success
-            = link_to 'Our animation', categories_path,{style: 'color: white;'}
+          = button_to 'Our Animations', categories_path, method: "get", class: "btn btn-success"
     .col-lg-6.border-left.p-4.text-center
       %h2 Custom Animation
       %span.fa.fa-plus.fa-lg.m-5
