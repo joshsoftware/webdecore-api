@@ -1,2 +1,5 @@
 =javascript_pack_tag 'demo_animation'
-%body{id: "demo", onload: "show('#{@anim_json.animation_json}')"}
+%body{onload: "show(animation)"}
+
+:javascript
+  window.animation = #{@animation_json.html_safe}

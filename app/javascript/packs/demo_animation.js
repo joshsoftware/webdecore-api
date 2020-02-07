@@ -1,14 +1,3 @@
-check = function(animation_name){
-  console.log('in check')
-  var canvas = document.getElementsByTagName("canvas")[0];
-  if(canvas !== undefined){
-    document.body.removeChild(canvas);
-    show(animation_name);
-  }
-  else {
-    show(animation_name);
-  }
-}
 show = function(animation){
 	var animData = {
     container: document.body,

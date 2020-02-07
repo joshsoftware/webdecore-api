@@ -11,6 +11,7 @@
           %h5.card-title.text-center= @animations[n].animation_name
           - name = @animations[n].animation_name
           %p.card-text.text-center Animation Price: #{@animations[n].animation_price}
-          = button_to 'Show Demo', demo_path(name, @primary_category_id, @secondary_category_id), method: "get", class: "btn btn-primary"
+          =button_to 'Show Demo', demo_path(@primary_category_id, @secondary_category_id, name), method: "get", class: "btn btn-primary"
+          %br
           = button_to 'Purchase', purchase_path(@animations[n].id, @primary_category_id, @secondary_category_id), method: "get", class: "btn btn-success"
       - n+=1
