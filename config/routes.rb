@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     scope "sub_categories/:sub_category_id/" do
       get "animations" => 'animation_datas#show'
 
-        scope "animations/:animation_data_id" do
+        scope "animations/:animation_name" do
             get "purchase" => 'user_animations#new'
             get "demo" => 'animation_datas#demo'
         end

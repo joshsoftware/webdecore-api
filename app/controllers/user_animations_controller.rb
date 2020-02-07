@@ -1,27 +1,31 @@
 # frozen_string_literal: true
 class UserAnimationsController < ApplicationController
-  @@anim_id = ""
 
-  def index
-    @animations = UserAnimation.where(user_id: current_user.id)
-  end
+ def index
+   @animations = UserAnimation.where(user_id: current_user.id)
+ end
 
-  def new
-    @locations = ["Maharashtra", "Delhi", "Hydrabad"]
-    @@anim_id = params[:id]
-  end
+ def new
+   @user_animations = UserAnimation.new
+   @locations = ["Maharashtra", "Karnataka", "AP"]
+   @anim_id = params[:id]
+ end
 
-  def create
-    status = "active"
-    params = permit_params
-    UserAnimation.create(start_date: params[:start_date], end_date: params[:end_date], user_id: current_user.id,
-      animation_data_id: @@anim_id, status: status,location: params[:location])
-    redirect_to user_animations_path
+ def create
+    user_animation = current_user.user_animations.new(permit_params)
+    user_animation.status = "Active"
+
+    if user_animation.save
+      redirect_to user_animations_path
+    else
+      render 'new'
+    end
+
   end
 
   private
 
-  def permit_params
-    params["user_animation"].permit(:start_date,:end_date,:location)
-  end
-end
+    def permit_params
+      params["user_animation"].permit(:user_id, :start_date,:end_date,:location,:animation_data_id)
+    end
+ end
