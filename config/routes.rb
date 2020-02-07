@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :animation_datas
+      get '/animation_datas' , to: 'animation_datas#index'
     end
   end
 
