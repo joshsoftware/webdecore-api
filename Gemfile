@@ -8,7 +8,15 @@ ruby '2.6.5'
 gem 'carrierwave', '~> 2.0'
 
 gem 'net-ssh'
+
 gem 'hirb'
+
+gem 'rspec', '~> 3.9'
+
+gem 'factory_bot', '~> 5.1', '>= 5.1.1'
+
+gem 'faker', '~> 2.10', '>= 2.10.1'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
 # Use postgresql as the database for Active Record
