@@ -1,5 +1,5 @@
 !!!
-%html.h-100
+%html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title WebDecor
@@ -9,10 +9,9 @@
     = stylesheet_link_tag 'https://use.fontawesome.com/releases/v5.7.0/css/all.css'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'alert'
-    %script{:src => "https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.5.9/lottie.js", :type => "text/javascript"}
+    %script{:src => "https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.5.9/lottie.js"}
 
-  %body#b.h-100
-    -# #lottie{:style =>"position: fixed; z-index: -999; display: block;"}
+  %body
     - if notice
       #message.alert.alert-success
         %span.fa.fa-check-circle.fa-lg
@@ -30,11 +29,11 @@
           %ul.navbar-nav.ml-auto
             %li.nav-item.dropdown
               %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :role => "button"}
-                = current_user.email
+                = current_user.first_name+" "+current_user.last_name
               .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
                 = link_to 'Edit profile', edit_user_registration_path, :class => 'dropdown-item'
                 = link_to "Logout", destroy_user_session_path, method: :delete, :class => 'dropdown-item'
     -# %lottie-player{ :autoplay => "", :background => "transparent", :loop => "", :speed => "1", :src => "/9514-celebration.json", :style => "width: 80%; position:fixed; display:block;"}
     = yield
-    = javascript_pack_tag 'load_animation.js'
-    = javascript_pack_tag 'demo_animation.js'
+    = javascript_pack_tag 'start'
+    //%script{:src=>"http://192.168.1.98:3000/animations/36.min.js"}

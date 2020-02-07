@@ -26,6 +26,15 @@ ActiveRecord::Schema.define(version: 2020_02_04_054559) do
     t.index ["category_id"], name: "index_animation_data_on_category_id"
   end
 
+  create_table "assets", force: :cascade do |t|
+    t.string "file"
+    t.string "file_type"
+    t.bigint "theme_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["theme_id"], name: "index_assets_on_theme_id"
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string "category_name"
     t.string "category_description"
@@ -74,5 +83,6 @@ ActiveRecord::Schema.define(version: 2020_02_04_054559) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "assets", "themes"
   add_foreign_key "themes", "users"
 end

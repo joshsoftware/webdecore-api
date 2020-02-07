@@ -1,19 +1,20 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  # before_action :configure_sign_up_params, only: [:create]
+  before_action :configure_sign_up_params, only: [:create]
+  after_action :create_user_file, only: [:create]
+  before_action :delete_user_file, only: [:destroy]
   # before_action :configure_account_update_params, only: [:update]
-  after_action :create_user_file, only: [:create, :delete]
 
   # # GET /resource/sign_up
-  #  def new
-  #    super
-  #  end
+    # def new
+    #   super
+    # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+   # def create
+   #   super
+   # end
 
   # GET /resource/edit
   # def edit
@@ -26,9 +27,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # DELETE /resource
-  # def destroy
-  #   super
-  # end
+   # def destroy
+   #   super
+   # end
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign
@@ -39,24 +40,30 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  private
+  # protected
+  def create_user_file
+    @user = current_user.id
+    @file_name = "public/users/#{@user}.js"
+    @file = File.new(@file_name,"w")
+    @file.close()
+    copy_file_contents(@file_name,@user)
+  end
 
-    def create_user_file
-      user_id = current_user.id
-      file_name = "public/animations/#{user_id}.min.js"
-      fileobject = File.new(file_name, "w+")
-      fileobject.close()
-      copy_file_contents(file_name)
-    end
-
-    def copy_file_contents(file_name)
-      src = File.open("app/javascript/packs/global_animation_data.min.js")
+  def copy_file_contents(file_name,user)
+      src = File.open("app/javascript/packs/start.js")
       data = src.read()
-      dest = File.open(file_name, "w+")
-      dest.write("var user= #{current_user.id};")
+      dest = File.open(file_name,"w+")
+      dest.write("var user = '#{user}';")
       dest.write(data)
       src.close()
       dest.close()
     end
 
+  def delete_user_file
+    File.delete("public/users/#{current_user.id}.js")
+  end
+  # If you have extra params to permit, append them to the sanitizer.
+  def configure_sign_up_params
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name,:last_name,:contact_number])
+  end
 end

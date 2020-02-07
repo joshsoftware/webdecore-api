@@ -25,8 +25,9 @@ class ApplicationController < ActionController::Base
 
   private
 
-    def user_not_authorized
-      flash[:alert] = t('user_not_authorized')
-      redirect_to(request.referrer || dashboard_index_url)
-    end
+  def user_not_authorized
+    flash[:alert] = t('user_not_authorized')
+    redirect_to(request.referrer || dashboard_index_url)
+  end
+
 end
