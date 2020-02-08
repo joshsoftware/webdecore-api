@@ -1,4 +1,5 @@
-%button.btn.btn-success{:style => "color: white"}= link_to 'New Category', new_category_path()
+- if current_user.role_id == 1
+  %button.btn.btn-success{:style => "color: white"}= link_to 'New Category', new_category_path()
 - n = 0
 - count = @categories.count
 - outer = (count - 1) / 4 + 1
