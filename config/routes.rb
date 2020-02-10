@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 Rails.application.routes.draw do
 
   devise_for :users ,controllers: {registrations: 'users/registrations'}
@@ -33,5 +31,5 @@ Rails.application.routes.draw do
       get '/animation_datas' , to: 'animation_datas#index'
     end
   end
-
 end
+
