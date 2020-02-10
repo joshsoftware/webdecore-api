@@ -14,4 +14,6 @@
           =button_to 'Show Demo', demo_path(@primary_category_id, @secondary_category_id, name), method: "get", class: "btn btn-primary"
           %br
           = button_to 'Purchase', purchase_path(@animations[n].id, @primary_category_id, @secondary_category_id), method: "get", class: "btn btn-success"
+          %button.btn.btn-success.text-center{:style => "color: white; display:block; float:left", :onclick => "check('#{name}')"}= 'Show Demo'
+          %button.btn.btn-success.text-center{:style => "color: white; display:block; float:right"}= link_to 'Purchase', purchase_path(@primary_category_id, @secondary_category_id, @animations[n].id)
       - n+=1
