@@ -15,9 +15,10 @@ class UserAnimationsController < ApplicationController
 
   def create
     if validate_date
+      puts permit_params
       user_animation = current_user.user_animations.new(permit_params)
       user_animation.status = "Active"
-      if user_animation.save
+      if user_animation.save!
         redirect_to user_animations_path
       else
         redirect_to_new
@@ -37,8 +38,8 @@ class UserAnimationsController < ApplicationController
       new_start = params[:user_animation][:start_date]
       new_end = params[:user_animation][:end_date]
       @users = UserAnimation.where(user_id: current_user.id, location: params[:user_animation][:location])
-      (@users).none? { |user| (new_start.to_date >= user.start_date && new_start.to_date <= user.end_date) || 
-      (new_start.to_date <= user.start_date && new_end.to_date >= user.start_date) } ? true : false  
+      (@users).none? { |user| (new_start.to_date >= user.start_date && new_start.to_date <= user.end_date) ||
+      (new_start.to_date <= user.start_date && new_end.to_date >= user.start_date) } ? true : false
     end
 
     def redirect_to_new
@@ -47,5 +48,5 @@ class UserAnimationsController < ApplicationController
                                 params[:user_animation][:sub_category_id],
                                 params[:user_animation][:animation_data_id])
     end
-    
+
 end
