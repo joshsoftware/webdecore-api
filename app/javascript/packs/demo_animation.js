@@ -1,22 +1,11 @@
-check = function(animation_name){
-  var canvas = document.getElementsByTagName("canvas")[0];
-  if(canvas !== undefined){
-    document.body.removeChild(canvas);
-    show(animation_name);
-  }
-  else {
-    show(animation_name);
-  }
-}
-show = function(animation_name){
-  var file_name = "/"+animation_name+".json";
+show = function(animation){
 	var animData = {
     container: document.body,
-  	animType: 'canvas',
+  	animType: 'svg',
   	loop: true,
   	prerender: true,
   	autoplay: true,
-  	path: file_name,
+    animationData: animation,
   	rendererSettings: {
       className: 'lottie',
   		preserveAspectRatio: 'none',
@@ -30,4 +19,8 @@ setTimeout(function () {
   html.style.top = 0;
   html.style.left = 0;
 	}, 100);
+}
+
+setDate = function(start_date){
+  document.getElementById('end_date').min = start_date
 }

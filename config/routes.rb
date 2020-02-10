@@ -12,12 +12,18 @@ Rails.application.routes.draw do
   resources :dashboard
   resources :categories
   resources :animation_datas
+  resources :user_animations
 
   scope "/categories/:id/" do
     get "sub_categories" => 'categories#show'
 
     scope "sub_categories/:sub_category_id/" do
       get "animations" => 'animation_datas#show'
+
+        scope "animations/:animation_name" do
+            get "purchase" => 'user_animations#new'
+            get "demo" => 'animation_datas#demo'
+        end
     end
   end
 
