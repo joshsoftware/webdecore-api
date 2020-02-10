@@ -1,14 +1,14 @@
 .container-fluid
   .row
     .col-md-4.offset-md-4
-      %h1 Add Primary Category
-      = bootstrap_form_with scope: :category, url: categories_path,local: true do |form|
+      %h3 New Sub Category
+      = bootstrap_form_with scope: :category, url: new_sub_category_path(@primary_category_id),local: true do |form|
         %p
           = form.text_field :category_name, required: true
         %p
           = form.text_field :category_description, required: true
         %p
-          = form.file_field :picture, id: "picture", onchange: "picture_file(this)", required: true
+          = form.file_field :picture, required: true, onchange: "picture_file(this)", id: "picture"
         %p
           = form.submit
 :javascript

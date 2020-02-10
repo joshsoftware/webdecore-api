@@ -1,3 +1,4 @@
+var user = '2';
 var script = document.createElement('script');
 script.type = 'text/javascript';
 script.src = 'https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.5.9/lottie.js';
@@ -27,6 +28,7 @@ window.callback = function(data){
    var animation1 = JSON.parse(animation);
    playAnimation(animation1);
  }
+
 }
 
 function playAnimation(animation){
@@ -46,6 +48,7 @@ function playAnimation(animation){
    var anim = bodymovin.loadAnimation(animData);
  }
  else {
+   var anim = lottie.searchAnimations();
    var anim = document.getElementsByClassName("lottie")[0];
    document.body.removeChild(anim);
    anim = bodymovin.loadAnimation(animData);
