@@ -7,6 +7,7 @@ class CategoriesController < ApplicationController
 
   def new
     @primary_category = Category.new
+    authorize @primary_category
   end
 
   def create
