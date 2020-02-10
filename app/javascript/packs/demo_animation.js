@@ -1,4 +1,5 @@
 show = function(animation){
+  animation= JSON.parse(animation);
 	var animData = {
     container: document.body,
   	animType: 'svg',
@@ -15,9 +16,9 @@ var anim = bodymovin.loadAnimation(animData);
 setTimeout(function () {
   var html = animData.container.getElementsByClassName("lottie")[0];
   html.style.position = "fixed";
-  html.style.zIndex = -999;
   html.style.top = 0;
   html.style.left = 0;
+  html.style.pointerEvents = "none";
 	}, 100);
 }
 

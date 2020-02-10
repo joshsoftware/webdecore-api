@@ -1,5 +1,5 @@
-- if current_user.role_id == 1
-  %button.btn.btn-success{:style => "color: white"}= link_to 'New Category', new_category_path()
+- if current_user.role.role_name == "admin"
+  = button_to 'New Category', new_category_path, method: "get", class: "btn btn-primary"
 - n = 0
 - count = @categories.count
 - outer = (count - 1) / 4 + 1
@@ -9,7 +9,7 @@
       - 4.times do
         - break if n >= count
         .card.col-md-3.p-3.text-center{:style => "height: 32rem"}
-          %img.img-fluid{:alt => "hii", :src => "#{@categories[n].picture.url}", :style => "height: 50%"}/
+          %img.img-fluid{:alt => "hii", :src => "#{@categories[n].picture.url}", :style => "height: 50%"}
           %h5.card-title.text-center.pt-3= @categories[n].category_name
           .card-body.justify-content-center.overflow-auto.m-0.p-0
             %p.card-text.text-muted.text-center= @categories[n].category_description
