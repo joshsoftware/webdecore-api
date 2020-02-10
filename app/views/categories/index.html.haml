@@ -1,3 +1,5 @@
+%div.offset-sm-11
+  = link_to 'Back', dashboard_index_path, class: "btn btn-success"
 - if current_user.role == "admin"
   = button_to 'New Category', new_category_path, method: "get", class: "btn btn-primary"
 - n = 0

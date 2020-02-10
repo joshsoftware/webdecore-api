@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :dashboard
   resources :categories
   resources :animation_datas
-  resources :user_animations, only: [:index,:create]
+  resources :user_animations, only: [:index,:create,:destroy,:edit,:update]
 
   get 'users_details' => 'dashboard#users_details'
   get 'order_details' => 'dashboard#order_details'
@@ -26,6 +26,7 @@ Rails.application.routes.draw do
       get "new_animation" => 'animation_datas#new'
       post "new_animation" => 'animation_datas#create'
 
+      
         scope "animations/:animation_data_id" do
             get "purchase" => 'user_animations#new'
             get "demo" => 'animation_datas#demo'

@@ -109,6 +109,8 @@ GEM
     faker (2.10.1)
       i18n (>= 1.6, < 2)
     ffi (1.12.2)
+    font-awesome-rails (4.7.0.5)
+      railties (>= 3.2, < 6.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     haml (5.1.2)
@@ -329,6 +331,7 @@ DEPENDENCIES
   devise (~> 4.2)
   factory_bot (~> 5.1, >= 5.1.1)
   faker (~> 2.10, >= 2.10.1)
+  font-awesome-rails (~> 4.7, >= 4.7.0.2)
   haml-rails (~> 2.0, >= 2.0.1)
   hirb
   hpricot

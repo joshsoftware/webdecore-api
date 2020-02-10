@@ -1,4 +1,6 @@
 !!!
+%script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"}
+%script{src: "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"}
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
@@ -22,7 +24,7 @@
         = alert
     - if user_signed_in?
       %nav.navbar.navbar-expand-lg.navbar-light.bg-light.mb-3
-        = link_to 'WebDecor', dashboard_index_path, class:"navbar-brand"
+        = link_to 'Web Decor', dashboard_index_path, class:"navbar-brand"
         - if current_user.role == "admin"
           = link_to 'User Details', users_details_path, class:"navbar-brand"
           = link_to 'Order Details', order_details_path, class:"navbar-brand"

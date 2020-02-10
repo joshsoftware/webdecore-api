@@ -11,6 +11,7 @@
           = form.file_field :picture, required: true, onchange: "picture_file(this)", id: "picture"
         %p
           = form.submit
+
 :javascript
   function picture_file(element){
     var fileName = document.getElementById("picture").files[0].name;

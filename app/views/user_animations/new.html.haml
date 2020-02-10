@@ -1,25 +1,59 @@
+%div.offset-sm-11
+  = link_to 'Back', animations_path, class: "btn btn-success"
 -locations = ["Maharashtra", "Karnataka", "AP"]
 -flash[:notice]
 .container
   .row
     .col-lg-4.offset-lg-4
       %h3 Fill Animation Details
-      -# = bootstrap_form_with(model: @user_animation, url: user_animations_path) do  |form|
-      = bootstrap_form_with scope: :user_animation, url: user_animations_path,local: true do |form|
+      = bootstrap_form_with scope: :user_animation, url: user_animations_path, local: true do |form|
+        =form.hidden_field :price, value: @price, readonly: true
+        %p 
         = form.hidden_field :animation_data_id, value: @animation_id
         %p
         = form.hidden_field :category_id, value: @category_id
         %p
         = form.hidden_field :sub_category_id, value: @sub_category_id
         %p
-        = form.date_field :start_date, min: Date.today, onchange: 'setDate(this.value)'
+        = form.date_field :start_date, min: Date.today, onchange: 'setDate(this.value)'   
         %p
-        = form.date_field :end_date, min: Date.today, id: 'end_date'
+        = form.date_field :end_date, min: Date.today, id: 'end_date', onchange: 'calcAmount(this.value)'
+        %p
+        = form.text_field :amount, value: @amount, readonly: true
         %p
         = form.select :location, locations
         = form.submit
+
+        -# .md-form
+        -#   %input#startingDate.form-control.datepicker.picker__input{placeholder: "Selected starting date", type: "text"}/
+        -#   %label{for: "startingDate"} start
+        -# .md-form
+        -#   %input#endingDate.form-control.datepicker.picker__input{placeholder: "Selected ending date", type: "text"}/
+        -#   %label{for: "endingDate"} end
 
 :javascript
   setDate = function(start_date){
     document.getElementById('end_date').min = start_date
   }
+
+  calcAmount = function(end_date)
+  {
+    price =  document.getElementById('user_animation_price').value
+    start_date = document.getElementById('user_animation_start_date').value
+    days = (Math.round((Date.parse(end_date) - Date.parse(start_date))/(1000*60*60*24)))+1
+    amount = (parseInt(price)) * days
+    document.getElementById('user_animation_amount').value = amount
+  }
+
+  //$('#startingDate').on('click', () => {
+    //$('#startingDate').pickadate({
+      //format: 'dd mmm',
+      //formatSubmit: 'mm/dd',
+      //selectYears: false,
+      //onClose: () => {
+        //$('div').removeAttr("tabindex");
+        //$('input').removeAttr("tabindex");
+      //},
+      //closeOnSelect: true
+    //})
+  //})
