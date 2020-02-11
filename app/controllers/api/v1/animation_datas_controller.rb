@@ -3,7 +3,7 @@ module Api
     class AnimationDatasController < ApplicationController
       skip_before_action :authenticate_user!
       def index
-
+        
         @animation_record = UserAnimation.find_by("user_id = ? AND location = ? AND start_date <= ? 
         AND end_date >= ?", params['user_id'], params['location'], Date.today, Date.today)
         if (@animation_record)
@@ -12,7 +12,9 @@ module Api
         else
           render json: {}
         end
+
       end
+
     end
   end
 end
