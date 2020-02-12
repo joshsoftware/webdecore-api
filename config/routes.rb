@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :dashboard
   resources :categories
   resources :animation_datas
-  resources :user_animations
+  resources :user_animations, only: [:index,:create]
 
   scope "/categories/:id/" do
     get "sub_categories" => 'categories#show'
@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     scope "sub_categories/:sub_category_id/" do
       get "animations" => 'animation_datas#show'
 
-        scope "animations/:animation_name" do
+        scope "animations/:animation_data_id" do
             get "purchase" => 'user_animations#new'
             get "demo" => 'animation_datas#demo'
         end

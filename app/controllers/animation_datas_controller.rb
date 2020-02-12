@@ -7,6 +7,6 @@ class AnimationDatasController < ApplicationController
   end
 
   def demo
-    @animation_json = AnimationData.find_by(animation_name: params[:animation_name]).animation_json.to_json
+    @animation_json = AnimationData.find_by(id: params[:animation_data_id]).animation_json.to_json
   end
 end
