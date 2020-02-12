@@ -26,6 +26,11 @@ ActiveRecord::Schema.define(version: 2020_02_07_081346) do
     t.index ["category_id"], name: "index_animation_data_on_category_id"
   end
 
+  create_table "animations", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "assets", force: :cascade do |t|
     t.string "file"
     t.string "file_type"
