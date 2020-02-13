@@ -6,8 +6,7 @@ Rails.application.routes.draw do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
 
-  resources :themes
-  resources :dashboard
+  resources :dashboard, only: [:index]
   resources :categories
   resources :animation_datas
   resources :user_animations, only: [:index,:create]
@@ -24,6 +23,7 @@ Rails.application.routes.draw do
       get "new_animation" => 'animation_datas#new'
       post "new_animation" => 'animation_datas#create'
 
+      
         scope "animations/:animation_data_id" do
             get "purchase" => 'user_animations#new'
             get "demo" => 'animation_datas#demo'

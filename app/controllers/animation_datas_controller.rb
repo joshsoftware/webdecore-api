@@ -29,6 +29,6 @@ class AnimationDatasController < ApplicationController
   private
     def permit_params
       params.require(:animation_datas).permit(:animation_name, :animation_price,:category_id,
-                      :picture, :animation_json)
+                     :picture, :animation_json)
     end
 end
