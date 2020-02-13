@@ -14,7 +14,6 @@ class UserAnimationsController < ApplicationController
 
   def create
     if validate_date
-      puts permit_params
       user_animation = current_user.user_animations.new(permit_params)
       user_animation.status = "Active"
       if user_animation.save!
@@ -27,6 +26,20 @@ class UserAnimationsController < ApplicationController
     end
   end
 
+  def destroy
+    delete_order = UserAnimation.find(params[:id]).destroy
+    redirect_to user_animations_path
+  end
+
+  def edit
+    @edit_order = UserAnimation.find(params[:id])
+  end
+
+  def update
+    update_user = UserAnimation.find(params[:id])
+    update_user.update(permit_params)
+    redirect_to user_animations_path
+  end
   private
 
     def permit_params
