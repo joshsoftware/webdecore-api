@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :animation_datas
   resources :user_animations, except: [:new]
 
+  get 'user_animations/:id' => 'user_animations#inactive'
   get 'users_details' => 'dashboard#users_details'
   get 'order_details' => 'dashboard#order_details'
 
