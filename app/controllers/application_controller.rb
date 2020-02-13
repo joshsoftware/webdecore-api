@@ -22,6 +22,11 @@ class ApplicationController < ActionController::Base
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :contact_number])
     end
+  
+    def password_required?
+      return false if skip_password_validation
+      super
+    end
 
   private
 

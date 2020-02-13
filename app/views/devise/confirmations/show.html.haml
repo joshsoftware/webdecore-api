@@ -1,0 +1,16 @@
+%nav.navbar.navbar-expand-lg.navbar-light.bg-light.mb-5
+  = link_to 'WebDecor', new_user_session_path, class:"navbar-brand"
+.container
+  .row
+    .col-md-4.offset-md-4.border.border-dark.rounded.p-4
+      Welcome
+      %h3 Set password
+      = bootstrap_form_for(resource, as: resource_name, url: users_confirm_path) do |f|
+        = render "devise/shared/error_messages", resource: resource
+        .field
+          = f.password_field :password, required: true
+        .field
+          = f.password_field :password_confirmation, :label => "Confirm Password", required: true
+          = f.hidden_field :confirmation_token
+        .actions
+          = f.submit "Set password", class: "btn btn-primary btn-block"

@@ -4,6 +4,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   after_action :create_user_file, only: [:create]
   before_action :delete_user_file, only: [:destroy]
+  # attr_accessor :skip_password_validation  # virtual attribute to skip password validation while saving
+
+
   # before_action :configure_account_update_params, only: [:update]
 
   # # GET /resource/sign_up
@@ -52,14 +55,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def copy_file_contents(file_name, user)
-      src = File.open("app/javascript/packs/animation.min.js")
-      data = src.read()
-      dest = File.open(file_name,"w+")
-      dest.write("var user = '#{user}';")
-      dest.write(data)
-      src.close()
-      dest.close()
-    end
+    src = File.open("app/javascript/packs/animation.min.js")
+    data = src.read()
+    dest = File.open(file_name,"w+")
+    dest.write("var user = '#{user}';")
+    dest.write(data)
+    src.close()
+    dest.close()
+  end
 
   def delete_user_file
     File.delete("public/users/#{current_user.id}.min.js")
@@ -68,4 +71,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name,:last_name,:contact_number])
   end
+
+
 end
