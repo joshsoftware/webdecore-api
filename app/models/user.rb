@@ -11,7 +11,6 @@ class User < ApplicationRecord
   has_many :themes
   has_many :user_animations
   has_many :animation_datas, through: :user_animations
-  belongs_to :role
 
   before_save :titleize_names
 

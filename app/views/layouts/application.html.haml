@@ -23,7 +23,7 @@
     - if user_signed_in?
       %nav.navbar.navbar-expand-lg.navbar-light.bg-light.mb-3
         = link_to 'WebDecor', dashboard_index_path, class:"navbar-brand"
-        - if current_user.role_id == 1
+        - if current_user.role == "admin"
           = link_to 'User Details', users_details_path, class:"navbar-brand"
           = link_to 'Order Details', order_details_path, class:"navbar-brand"
         - else
