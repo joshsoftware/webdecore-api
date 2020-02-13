@@ -1,21 +1,15 @@
-%h2.text-center.m-4
-  User Dashboard
 .container-fluid.h-75
-  .row
-    .col.col-lg-8.offset-lg-2.bg-light.text-center
-      NOTE: Make sure you have included
-      %code &lt;script src="192.168.1.100:3000/#{current_user.id}.min.js"&gt
-      in your application.
-  .row.h-100
-    .col-lg-6.border-right.p-4.text-center
+  - if current_user.role == 'user'
+    %h2.text-center.m-3
+      User Dashboard
+    .row
+      .col.col-lg-8.offset-lg-2.bg-light.text-center
+        NOTE: Make sure you have included
+        %code &lt;script src="192.168.1.100:3000/users/#{current_user.id}.min.js"&gt
+        in your application.
+  .row.mt-4
+    .col-lg-6.offset-lg-3.p-4.text-center
       %h2 Our Animations
       .row.pt-5.pb-5
         .col-lg-4.offset-lg-4
           = button_to 'Our Animations', categories_path, method: "get", class: "btn btn-success"
-    .col-lg-6.border-left.p-4.text-center
-      %h2 Custom Animation
-      %span.fa.fa-plus.fa-lg.m-5
-        =link_to "Add Theme", new_theme_path
-      %br
-      %span.fa.fa-list.fa-lg
-        =link_to "List Themes", themes_path

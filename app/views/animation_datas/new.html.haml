@@ -1,0 +1,29 @@
+
+.container-fluid
+  .row
+    .col-md-4.offset-md-4
+      %h3 New Animation Form
+      = bootstrap_form_with scope: :animation_datas, url: new_animation_path(),local: true do |form|
+        %p
+          = form.text_field :animation_name, required: true
+        %p
+          = form.text_field :animation_price, required: true
+        %p
+          = form.file_field :picture, required: true, id:"picture", onchange: "picture_file(this)"
+        %p
+          = form.file_field :animation_json, required: true, id:"json", onchange: "json_file(this)"
+        %p
+          = form.submit
+
+
+:javascript
+  function picture_file(element){
+    var fileName = document.getElementById("picture").files[0].name;
+    var nextSibling = element.nextElementSibling;
+    nextSibling.innerText = fileName;
+  }
+  function json_file(element){
+    var fileName = document.getElementById("json").files[0].name;
+    var nextSibling = element.nextElementSibling;
+    nextSibling.innerText = fileName;
+  }

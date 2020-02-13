@@ -7,7 +7,10 @@ class CategoryPolicy < ApplicationPolicy
   end
 
   def new?
-    Role.find_by(id: @user.role_id).role_name == "admin"
+    @user.role == "admin"
   end
 
+  def new_sub_category?
+    @user.role == "admin"
+  end
 end

@@ -42,15 +42,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # protected
   def create_user_file
-    @user = current_user.id
-    @file_name = "public/users/#{@user}.js"
-    @file = File.new(@file_name,"w")
-    @file.close()
-    copy_file_contents(@file_name,@user)
+    if current_user
+      user = current_user.id
+      file_name = "public/users/#{user}.min.js"
+      file = File.new(file_name, "w")
+      file.close()
+      copy_file_contents(file_name, user)
+    end
   end
 
-  def copy_file_contents(file_name,user)
-      src = File.open("app/javascript/packs/start.js")
+  def copy_file_contents(file_name, user)
+      src = File.open("app/javascript/packs/animation.min.js")
       data = src.read()
       dest = File.open(file_name,"w+")
       dest.write("var user = '#{user}';")
@@ -60,7 +62,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
 
   def delete_user_file
-    File.delete("public/users/#{current_user.id}.js")
+    File.delete("public/users/#{current_user.id}.min.js")
   end
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params

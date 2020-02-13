@@ -20,6 +20,22 @@ class CategoriesController < ApplicationController
     @categories = @primary_category.secondary_categories
   end
 
+  def new_sub_category
+    @new_sub_category = Category.new
+    authorize @new_sub_category
+    @primary_category_id = params[:id]
+  end
+
+  def create_sub_category
+    @new_sub_category = Category.new(permit_params)
+    @new_sub_category.primarycategory_id = params[:id]
+    if @new_sub_category.save
+      redirect_to sub_categories_path(params[:id])
+    else
+      flash[:alert] = "Error occured while creating"
+      redirect_to sub_categories_path(params[:id])
+    end
+  end
   private
 
   def permit_params

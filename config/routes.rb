@@ -12,11 +12,17 @@ Rails.application.routes.draw do
   resources :animation_datas
   resources :user_animations, only: [:index,:create]
 
+  get 'users_details' => 'dashboard#users_details'
+  get 'order_details' => 'dashboard#order_details'
   scope "/categories/:id/" do
     get "sub_categories" => 'categories#show'
+    get "new_sub_category" => 'categories#new_sub_category'
+    post "new_sub_category" => 'categories#create_sub_category'
 
     scope "sub_categories/:sub_category_id/" do
       get "animations" => 'animation_datas#show'
+      get "new_animation" => 'animation_datas#new'
+      post "new_animation" => 'animation_datas#create'
 
         scope "animations/:animation_data_id" do
             get "purchase" => 'user_animations#new'
@@ -32,4 +38,3 @@ Rails.application.routes.draw do
     end
   end
 end
-

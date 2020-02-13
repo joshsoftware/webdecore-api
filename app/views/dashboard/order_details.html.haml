@@ -1,0 +1,19 @@
+.col-md-4.offset-md-4.text-center
+  %h3 Order Details
+  %table.table.table-hover.table-responsive
+    %thead.thead-dark
+      %tr
+        %th Name
+        %th Animation Id
+        %th Start Date
+        %th End Date
+    - @orders.each do |order|
+      %tr
+        %td
+          =order.user.first_name+' '+order.user.last_name
+        %td
+          =order.animation_data_id
+        %td
+          =order.start_date
+        %td
+          =order.end_date
