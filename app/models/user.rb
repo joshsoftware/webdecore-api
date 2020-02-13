@@ -4,10 +4,9 @@ class User < ApplicationRecord
   validates :first_name, :last_name, :password, presence: true
   valid_email_regex = /\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/i
   validates :email, presence: true, format: { with: valid_email_regex }, uniqueness: true
-  valid_contact_regex = /\A[7-9][0-9]{9}\z/
-  validates :contact_number, presence: true, format: { with: valid_contact_regex }, uniqueness: true
-  # validates :contact_number, numericality: { only_integer: true }, length: { is: 10}, uniqueness: true
-
+  #validates :contact_number, numericality: { only_integer: true }, length: { is: 10}, uniqueness: true
+   valid_contact_regex = /\A[7-9][0-9]{9}\z/
+   validates :contact_number, presence: true, format: { with: valid_contact_regex }, uniqueness: true
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable

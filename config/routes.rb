@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :dashboard, only: [:index]
   resources :categories
   resources :animation_datas
-  resources :user_animations, only: [:index,:create]
+  resources :user_animations, only: [:index,:create,:destroy,:edit,:update]
 
   get 'users_details' => 'dashboard#users_details'
   get 'order_details' => 'dashboard#order_details'
