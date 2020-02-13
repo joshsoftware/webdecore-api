@@ -5,18 +5,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.5'
 
-gem 'carrierwave', '~> 2.0'
-
-gem 'net-ssh'
-
-gem 'hirb'
-
-gem 'rspec', '~> 3.9'
-
-gem 'factory_bot', '~> 5.1', '>= 5.1.1'
-
-gem 'faker', '~> 2.10', '>= 2.10.1'
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
 # Use postgresql as the database for Active Record
@@ -41,7 +29,17 @@ gem 'bootstrap_form', '~> 4.3'
 gem 'jquery-rails'
 gem 'popper_js', '~> 1.14.5'
 
-gem 'jquery-rails'
+gem 'carrierwave', '~> 2.0'
+
+gem 'net-ssh'
+
+gem 'hirb'
+
+gem 'rspec', '~> 3.9'
+
+gem 'factory_bot', '~> 5.1', '>= 5.1.1'
+
+gem 'faker', '~> 2.10', '>= 2.10.1'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -52,11 +50,10 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'haml-rails', '~> 2.0', '>= 2.0.1'
 
-gem 'haml-rails', '~> 2.0', '>= 2.0.1'
-
-gem 'rake-minify', '~> 0.4.0'
-
 gem 'pundit', '~> 1.1'
+
+# gem 'mailcatcher', '~> 0.6.1'
+gem 'mailcatcher'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

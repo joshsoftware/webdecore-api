@@ -14,16 +14,7 @@
           = f.text_field :contact_number, required: true
         .field
           = f.email_field :email, autofocus: true, autocomplete: "email", required: true
-        .field
-          = f.label :password
-          - if @minimum_password_length
-            %em
-              (#{@minimum_password_length} characters minimum)
-          %br/
-          = f.password_field :password, autocomplete: "new-password", hide_label: true, required: true
-          = f.password_field :password_confirmation, autocomplete: "new-password", required: true
         .actions
           = f.submit "Sign up", class: "btn btn-primary btn-block"
-        %br/
       %p
         Already have account? #{render "devise/shared/links"}

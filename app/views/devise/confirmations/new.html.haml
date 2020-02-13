@@ -1,10 +1,11 @@
-%h2 Resend confirmation instructions
-= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
-  = render "devise/shared/error_messages", resource: resource
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email)
-  .actions
-    = f.submit "Resend confirmation instructions"
-= render "devise/shared/links"
+%nav.navbar.navbar-expand-lg.navbar-light.bg-light.mb-5
+  = link_to 'WebDecor', new_user_session_path, class:"navbar-brand"
+.container
+  .row
+    .col-md-4.offset-md-4.border.border-dark.rounded.p-4
+      %h3 Resend confirmation instructions
+      = bootstrap_form_for(resource, as: resource_name, url: confirmation_path(resource_name)) do |f|
+        .field
+          = f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email)
+        .actions
+          = f.submit "Resend confirmation instructions", class: "btn btn-primary btn-block"
