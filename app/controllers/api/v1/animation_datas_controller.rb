@@ -3,9 +3,11 @@ module Api
     class AnimationDatasController < ApplicationController
       skip_before_action :authenticate_user!
       def index
-        
-        @animation_record = UserAnimation.find_by("user_id = ? AND location = ? AND start_date <= ? 
-        AND end_date >= ?", params['user_id'], params['location'], Date.today, Date.today)
+
+        @animation_record = UserAnimation.
+        where("start_date <= :today_date AND end_date >= :today_date" , {today_date: Date.today}).
+        where(user_id: params['user_id'], location: params['location']).first
+
         if (@animation_record)
           @animation = AnimationData.find(@animation_record.animation_data_id).animation_json
           render json: @animation.as_json
@@ -14,7 +16,6 @@ module Api
         end
 
       end
-
     end
   end
 end
