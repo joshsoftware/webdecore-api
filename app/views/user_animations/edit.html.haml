@@ -39,3 +39,14 @@
     amount = (parseInt(price)) * days
     document.getElementById('user_animation_amount').value = amount
   }
+
+    var start_date = document.getElementById('user_animation_start_date').value;
+    if(Date.parse(start_date) <= new Date()){
+      document.getElementById('user_animation_start_date').readOnly = true;
+    }
+    else{
+      document.getElementById('user_animation_end_date').min = document.getElementById('user_animation_start_date').value
+    }
+  setDate = function(start_date){
+    document.getElementById('user_animation_end_date').min = start_date
+  }
