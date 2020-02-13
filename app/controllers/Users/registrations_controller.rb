@@ -42,11 +42,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # protected
   def create_user_file
-    user = current_user.id
-    file_name = "public/users/#{user}.min.js"
-    file = File.new(file_name, "w")
-    file.close()
-    copy_file_contents(file_name, user)
+    if current_user
+      user = current_user.id
+      file_name = "public/users/#{user}.min.js"
+      file = File.new(file_name, "w")
+      file.close()
+      copy_file_contents(file_name, user)
+    end
   end
 
   def copy_file_contents(file_name, user)

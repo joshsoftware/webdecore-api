@@ -1,4 +1,4 @@
-- if current_user.role.role_name == "admin"
+- if current_user.role == "admin"
   = button_to 'Add New Animation', new_animation_path, method: "get", class: "btn btn-primary"
 - n = 0
 - count = @animations.count
@@ -14,7 +14,7 @@
             %h5.card-title.text-center.my-4= @animations[n].animation_name
             - name = @animations[n].animation_name
             %p.card-text.text-center.my-4 Animation Price: #{@animations[n].animation_price}
-            =button_to 'Show Demo', demo_path(@primary_category_id, @secondary_category_id, name), method: "get", class: "btn btn-primary ", :style => "float: left"
-            - if current_user.role.role_name == "user"
-              = button_to 'Purchase', purchase_path(@animations[n].id, @primary_category_id, @secondary_category_id), method: "get", class: "btn btn-success", :style => "float: right"
+            =button_to 'Show Demo', demo_path(@primary_category_id, @secondary_category_id, @animations[n].id), method: "get", class: "btn btn-primary ", :style => "float: left"
+            - if current_user.role == "user"
+              = button_to 'Purchase', purchase_path(@primary_category_id, @secondary_category_id, @animations[n].id), method: "get", class: "btn btn-success", :style => "float: right"
         - n+=1

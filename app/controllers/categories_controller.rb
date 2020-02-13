@@ -34,6 +34,7 @@ class CategoriesController < ApplicationController
     else
       flash[:alert] = "Error occured while creating"
       redirect_to sub_categories_path(params[:id])
+    end
   end
   private
 

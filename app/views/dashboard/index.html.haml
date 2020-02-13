@@ -1,5 +1,5 @@
 .container-fluid.h-75
-  - if current_user.role.role_name == 'user'
+  - if current_user.role == 'user'
     %h2.text-center.m-3
       User Dashboard
     .row

@@ -7,10 +7,10 @@ class DashboardPolicy < Struct.new(:user, :dashboard)
   end
 
   def users_details?
-    @user.role.role_name == "admin"
+    @user.role == "admin"
   end
 
   def order_details?
-    @user.role.role_name == "admin"
+    @user.role == "admin"
   end
 end

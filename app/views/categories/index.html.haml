@@ -1,4 +1,4 @@
-- if current_user.role.role_name == "admin"
+- if current_user.role == "admin"
   = button_to 'New Category', new_category_path, method: "get", class: "btn btn-primary"
 - n = 0
 - count = @categories.count
