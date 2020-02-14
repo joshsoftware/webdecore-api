@@ -4,7 +4,6 @@
   .row
     .col-lg-4.offset-lg-4
       %h3 Fill Animation Details
-      -# = bootstrap_form_with(model: @user_animation, url: user_animations_path) do  |form|
       = bootstrap_form_with scope: :user_animation, url: user_animations_path,local: true do |form|
         = form.hidden_field :animation_data_id, value: @animation_id
         %p

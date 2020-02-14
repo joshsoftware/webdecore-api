@@ -14,4 +14,6 @@
           .card-body.justify-content-center.overflow-auto.m-0.p-0
             %p.card-text.text-muted.text-center= @categories[n].category_description
           = button_to 'click here', animations_path(@primary_category.id, @categories[n].id), method: "get", class: "btn btn-success"
+          = button_to "Edit", edit_sub_category_path(@primary_category.id, @categories[n].id), method: "get", class: "btn btn-success"
+          = button_to 'Delete', destroy_sub_category_path(@primary_category.id, @categories[n].id), method: "delete", class: "btn btn-success"
         - n+=1

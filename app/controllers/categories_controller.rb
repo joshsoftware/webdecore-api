@@ -36,9 +36,39 @@ class CategoriesController < ApplicationController
       redirect_to sub_categories_path(params[:id])
     end
   end
+
+  def edit
+    @edit_primary_category = Category.find_by(id: params[:id])
+  end
+
+  def update
+    Category.find_by(id: params[:id]).update(permit_params)
+    redirect_to categories_path
+  end
+
+  def edit_sub_category
+    @edit_sub_category = Category.find_by(id: params[:sub_category_id])
+  end
+
+  def update_sub_category
+    Category.find_by(id: params[:sub_category_id]).update(permit_params)
+    redirect_to sub_categories_path(params[:id])
+  end
+
+  def destroy
+    Category.find_by(id: params[:id]).destroy
+    redirect_to categories_path
+  end
+
+  def destroy_sub_category
+   Category.find_by(id: params[:sub_category_id]).destroy
+   redirect_to sub_categories_path(params[:id])
+  end
+
   private
 
   def permit_params
     params.require(:category).permit(:category_name, :category_description, :picture)
   end
+
 end
