@@ -1,4 +1,11 @@
 .col-md-4.offset-md-4.text-center
+  .btn-group
+    %a{href: "javascript:history.back()"}
+      %button Back
+    %a{href: "/dashboard"}
+      %button Home    
+
+.col-md-4.offset-md-4.text-center
   %h2 Users Details
 .col-md-6.offset-md-3
   %table.table.table-hover.table-responsive
@@ -18,3 +25,5 @@
           =user.email
         %td
           =user.contact_number
+
+    

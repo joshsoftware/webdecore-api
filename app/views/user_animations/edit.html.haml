@@ -2,20 +2,42 @@
 -flash[:notice]
 .container
   .row
+    .col-md-4.offset-md-4.text-center
+      .btn-group
+        %a{href: "javascript:history.back()"}
+          %button Back
+        %a{href: "/dashboard"}
+          %button Home     
+
     .col-lg-4.offset-lg-4
       %h3 Update Animation Details
       = bootstrap_form_with model: @edit_order, url: user_animation_path,local: true do |form|
+        = form.hidden_field :price, value: @price
+        %p
         = form.hidden_field :animation_data_id, value: @edit_order.animation_data_id
         %p
         = form.date_field :start_date, min: Date.today, onchange: 'setDate(this.value)'
         %p
-        = form.date_field :end_date, min: Date.today, id: 'end_date'
+        = form.date_field :end_date, min: Date.today, id: 'end_date', onchange: 'calcAmount(this.value)'
+        %p
+        = form.text_field :amount, value: @amount, readonly: true
         %p
         = form.select :location, locations
         = form.submit
+
+         
 
 
 :javascript
   setDate = function(start_date){
     document.getElementById('end_date').min = start_date
+  }
+
+  calcAmount = function(end_date)
+  {
+    price =  document.getElementById('user_animation_price').value
+    start_date = document.getElementById('user_animation_start_date').value
+    days = (Math.round((Date.parse(end_date) - Date.parse(start_date))/(1000*60*60*24)))+1
+    amount = (parseInt(price)) * days
+    document.getElementById('user_animation_amount').value = amount
   }

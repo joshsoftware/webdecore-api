@@ -1,3 +1,10 @@
+.col-md-4.offset-md-4.text-center
+  .btn-group
+    %a{href: "javascript:history.back()"}
+      %button Back
+    %a{href: "/dashboard"}
+      %button Home   
+
 - if current_user.role == "admin"
   = button_to 'New Sub_category', new_sub_category_path(@primary_category), method: "get", class: "btn btn-primary"
 - n = 0
@@ -15,3 +22,5 @@
             %p.card-text.text-muted.text-center= @categories[n].category_description
           = button_to 'click here', animations_path(@primary_category.id, @categories[n].id), method: "get", class: "btn btn-success"
         - n+=1
+
+       

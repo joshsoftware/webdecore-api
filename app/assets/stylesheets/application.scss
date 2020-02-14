@@ -26,3 +26,26 @@
     font-size: 16px;
     font-weight: bold;
 }
+
+.btn-group button {
+  background-color: rgb(14, 184, 71);
+  border: 1px solid rgb(42, 138, 4);
+  color: white; 
+  padding: 10px 24px; 
+  cursor: pointer; 
+  float: left;
+}
+
+.btn-group:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.btn-group button:not(:last-child) {
+  border-right: none;
+}
+
+.btn-group button:hover {
+  background-color: #0f880f;
+}

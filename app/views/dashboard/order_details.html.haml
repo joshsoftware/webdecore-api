@@ -1,4 +1,11 @@
 .col-md-4.offset-md-4.text-center
+  .btn-group
+    %a{href: "javascript:history.back()"}
+      %button Back
+    %a{href: "/dashboard"}
+      %button Home
+
+.col-md-4.offset-md-4.text-center
   %h3 Order Details
   %table.table.table-hover.table-responsive
     %thead.thead-dark
@@ -18,21 +25,3 @@
         %td
           =order.end_date
 
-
-.col-md-4.offset-md-4.text-center
-  .row-fluid
-    .span4.text-left
-      = button_to "Back", user_animations_path, method: "get", class: "btn btn-primary"
-    .span4.text-center
-      = button_to "Back", user_animations_path, method: "get", class: "btn btn-primary"
-    .span4.text-right
-      = button_to "Back", user_animations_path, method: "get", class: "btn btn-primary"
-
-
-
--# .container.mt-4
--#  .row
--#    .col-lg-4.offset-lg-4
--#      = button_to "Back", user_animations_path, method: "get", class: "btn btn-primary"
--#      = button_to "Home", user_animations_path, method: "get", class: "btn btn-success"
--#      = button_to "forward", user_animations_path, method: "get", class: "btn btn-primary"

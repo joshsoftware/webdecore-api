@@ -3,3 +3,10 @@
 
 :javascript
   window.animation = #{@animation_json.html_safe}
+
+.col-md-4.offset-md-4.text-center
+  .btn-group
+    %a{href: "javascript:history.back()"}
+      %button Back
+    %a{href: "/dashboard"}
+      %button Home  

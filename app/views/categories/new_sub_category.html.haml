@@ -1,5 +1,12 @@
 .container-fluid
   .row
+    .col-md-4.offset-md-4.text-center
+      .btn-group
+        %a{href: "javascript:history.back()"}
+          %button Back
+        %a{href: "/dashboard"}
+          %button Home
+
     .col-md-4.offset-md-4
       %h3 New Sub Category
       = bootstrap_form_with scope: :category, url: new_sub_category_path(@primary_category_id),local: true do |form|
@@ -11,9 +18,14 @@
           = form.file_field :picture, required: true, onchange: "picture_file(this)", id: "picture"
         %p
           = form.submit
+
+    
+
 :javascript
   function picture_file(element){
     var fileName = document.getElementById("picture").files[0].name;
     var nextSibling = element.nextElementSibling;
     nextSibling.innerText = fileName;
   }
+
+  

@@ -1,6 +1,13 @@
 
 .container-fluid
   .row
+    .col-md-4.offset-md-4.text-center
+      .btn-group
+        %a{href: "javascript:history.back()"}
+          %button Back
+        %a{href: "/dashboard"}
+          %button Home    
+          
     .col-md-4.offset-md-4
       %h3 New Animation Form
       = bootstrap_form_with scope: :animation_datas, url: new_animation_path(),local: true do |form|
@@ -14,6 +21,8 @@
           = form.file_field :animation_json, required: true, id:"json", onchange: "json_file(this)"
         %p
           = form.submit
+
+           
 
 
 :javascript

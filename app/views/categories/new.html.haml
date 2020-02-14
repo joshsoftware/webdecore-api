@@ -1,5 +1,12 @@
 .container-fluid
   .row
+    .col-md-4.offset-md-4.text-center
+      .btn-group
+        %a{href: "javascript:history.back()"}
+          %button Back
+        %a{href: "/dashboard"}
+          %button Home
+
     .col-md-4.offset-md-4
       %h1 Add Primary Category
       = bootstrap_form_with scope: :category, url: categories_path,local: true do |form|
@@ -11,6 +18,10 @@
           = form.file_field :picture, id: "picture", onchange: "picture_file(this)", required: true
         %p
           = form.submit
+
+      
+
+
 :javascript
   function picture_file(element){
     var fileName = document.getElementById("picture").files[0].name;

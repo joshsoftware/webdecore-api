@@ -1,3 +1,10 @@
+.col-md-4.offset-md-4.text-center
+  .btn-group
+    %a{href: "javascript:history.back()"}
+      %button Back
+    %a{href: "/dashboard"}
+      %button Home  
+
 - if current_user.role == "admin"
   = button_to 'Add New Animation', new_animation_path, method: "get", class: "btn btn-primary"
 - n = 0
@@ -17,3 +24,5 @@
             - if current_user.role == "user"
               = button_to 'Purchase', purchase_path(@primary_category_id, @secondary_category_id, @animations[n].id), method: "get", class: "btn btn-success", :style => "float: right"
         - n+=1
+
+
