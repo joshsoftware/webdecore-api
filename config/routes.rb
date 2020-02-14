@@ -13,9 +13,10 @@ Rails.application.routes.draw do
   resources :categories
   resources :animation_datas
   resources :user_animations, only: [:index,:create]
-
+  # get 'welcome/index'
   get 'users_details' => 'dashboard#users_details'
   get 'order_details' => 'dashboard#order_details'
+
   scope "/categories/:id/" do
     get "sub_categories" => 'categories#show'
     get "new_sub_category" => 'categories#new_sub_category'
@@ -26,9 +27,16 @@ Rails.application.routes.draw do
       get "new_animation" => 'animation_datas#new'
       post "new_animation" => 'animation_datas#create'
 
+      get "edit_sub_category" => "categories#edit_sub_category"
+      patch "edit_sub_category" => "categories#update_sub_category"
+      put "edit_sub_category" => "categories#update_sub_category"
+      delete "destroy_sub_category" => "categories#destroy_sub_category"
+
         scope "animations/:animation_data_id" do
             get "purchase" => 'user_animations#new'
             get "demo" => 'animation_datas#demo'
+            get "edit_animation" => 'animation_datas#edit'
+            delete 'destroy_animation' => 'animation_datas#destroy_animation'
         end
     end
   end

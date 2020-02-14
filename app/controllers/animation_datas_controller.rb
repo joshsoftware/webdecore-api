@@ -7,7 +7,7 @@ class AnimationDatasController < ApplicationController
   end
 
   def demo
-    @animation_json = AnimationData.find_by(id: params[:animation_data_id]).animation_json.to_json
+    @animation_json = AnimationData.find(params[:animation_data_id]).animation_json.to_json
   end
 
   def new
@@ -19,6 +19,7 @@ class AnimationDatasController < ApplicationController
     file_data = params[:animation_datas][:animation_json].read
     params[:animation_datas][:animation_json] = file_data.as_json
     params[:animation_datas][:category_id] = params[:sub_category_id]
+    params[:animation_datas][:animation_json].force_encoding("UTF-8")
     if AnimationData.create(permit_params)
       redirect_to animations_path
     else
