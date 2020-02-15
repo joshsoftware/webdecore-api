@@ -11,6 +11,8 @@
           = form.file_field :picture, required: true, onchange: "picture_file(this)", id: "picture"
         %p
           = form.submit
+      = button_to 'Cancel', sub_categories_path, method: "get", class: "btn btn-success", :style => "float: left"
+
 :javascript
   function picture_file(element){
     var fileName = document.getElementById("picture").files[0].name;

@@ -1,0 +1,32 @@
+
+.container-fluid
+  .row
+    .col-md-4.offset-md-4
+      %h3 Edit Animation Form
+      = bootstrap_form_with scope: :animation_datas, method:"patch", url: edit_animation_path, local: true do |form|
+        %p
+          = form.text_field :animation_name, required: true, value: @animation.animation_name
+        %p
+          = form.text_field :animation_price, required: true, value: @animation.animation_price
+        %label Your Previous picture
+        %img.img-fluid{:alt => "hii", :src => "#{@animation.picture.url}", id: "new_picture"}
+        %p
+          = form.file_field :picture, id:"picture", onchange: "picture_file(this)", accept: 'image/png,image/gif,image/jpeg'
+        %p
+          = form.file_field :animation_json, id:"json", onchange: "json_file(this)"
+        %p
+          = form.submit
+      = button_to 'Cancel',animations_path, method: "get", class: "btn btn-success", :style => "float: left"
+
+
+:javascript
+  function picture_file(element){
+    var fileName = document.getElementById("picture").files[0].name;
+    var nextSibling = element.nextElementSibling;
+    nextSibling.innerText = fileName;
+  }
+  function json_file(element){
+    var fileName = document.getElementById("json").files[0].name;
+    var nextSibling = element.nextElementSibling;
+    nextSibling.innerText = fileName;
+  }

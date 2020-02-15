@@ -7,12 +7,13 @@
           = form.text_field :category_name, value: @edit_primary_category.category_name, required: true
         %p
           = form.text_field :category_description, value: @edit_primary_category.category_description, required: true
-          %label Your Previous picture
-          %img.img-fluid{:alt => "hii", :src => "#{@edit_primary_category.picture.url}", :style => "height: 10%", id: "new_picture"}
+        %label Your Previous picture
+        %img.img-fluid{:alt => "alt", :src => "#{@edit_primary_category.picture.url}", :style => "height: 10%", id: "new_picture"}
         %p
           = form.file_field :picture, id: "picture", onchange: "picture_file(this)"
         %p
           = form.submit
+      = button_to 'Cancel', categories_path, method: "get", class: "btn btn-success", :style => "float: left"
 :javascript
   function picture_file(element){
     var fileName = document.getElementById("picture").files[0].name;

@@ -19,24 +19,25 @@ Rails.application.routes.draw do
 
   scope "/categories/:id/" do
     get "sub_categories" => 'categories#show'
-    get "new_sub_category" => 'categories#new_sub_category'
-    post "new_sub_category" => 'categories#create_sub_category'
+    get "new" => 'categories#new_sub_category', as: :new_sub_category
+    post "new" => 'categories#create_sub_category'
 
     scope "sub_categories/:sub_category_id/" do
       get "animations" => 'animation_datas#show'
-      get "new_animation" => 'animation_datas#new'
-      post "new_animation" => 'animation_datas#create'
+      get "new" => 'animation_datas#new', as: :new_animation
+      post "new" => 'animation_datas#create'
 
-      get "edit_sub_category" => "categories#edit_sub_category"
-      patch "edit_sub_category" => "categories#update_sub_category"
-      put "edit_sub_category" => "categories#update_sub_category"
-      delete "destroy_sub_category" => "categories#destroy_sub_category"
+      get "edit" => "categories#edit_sub_category", as: :edit_sub_category
+      patch "edit" => "categories#update_sub_category"
+      delete "destroy" => "categories#destroy_sub_category", as: :destroy_sub_category
 
         scope "animations/:animation_data_id" do
             get "purchase" => 'user_animations#new'
             get "demo" => 'animation_datas#demo'
-            get "edit_animation" => 'animation_datas#edit'
-            delete 'destroy_animation' => 'animation_datas#destroy_animation'
+
+            get "edit" => 'animation_datas#edit', as: "edit_animation"
+            patch "edit" => 'animation_datas#update'
+            delete 'destroy' => 'animation_datas#destroy', as: :destroy_animation
         end
     end
   end
