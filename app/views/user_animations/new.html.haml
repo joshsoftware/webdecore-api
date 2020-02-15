@@ -17,6 +17,10 @@
         %p
         = form.select :location, locations
         = form.submit
+      %br
+      = button_to 'Cancel', animations_path, method: "get", class: "btn btn-success", :style => "float: left"
+
+
 
 :javascript
   setDate = function(start_date){

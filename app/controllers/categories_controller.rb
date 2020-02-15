@@ -2,7 +2,7 @@
 
 class CategoriesController < ApplicationController
   def index
-    @categories = Category.primary
+    @categories = Category.primary.order(id: :ASC)
   end
 
   def new
@@ -11,13 +11,27 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    @primary_categories = Category.create(permit_params)
-    redirect_to categories_path
+    @primary_category = Category.new(permit_params)
+    if @primary_category.save
+      redirect_to categories_path
+    else
+      flash[:alert] = "Error occured while creating"
+      redirect_to sub_categories_path(params[:id])
+    end
+
   end
 
   def show
     @primary_category = Category.find_by(id: params[:id])
-    @categories = @primary_category.secondary_categories
+    if !@primary_category.nil? and @primary_category.primarycategory_id.nil?
+      @categories = @primary_category.secondary_categories.order(id: :ASC)
+      if @categories.empty?
+        redirect_to categories_path
+      end
+    else
+      redirect_to categories_path
+    end
+
   end
 
   def new_sub_category
@@ -39,6 +53,9 @@ class CategoriesController < ApplicationController
 
   def edit
     @edit_primary_category = Category.find_by(id: params[:id])
+    if @edit_primary_category.nil?
+      redirect_to categories_path
+    end
   end
 
   def update
@@ -47,7 +64,14 @@ class CategoriesController < ApplicationController
   end
 
   def edit_sub_category
-    @edit_sub_category = Category.find_by(id: params[:sub_category_id])
+    if Category.where(id: params[:id]).exists?
+      @edit_sub_category = Category.find_by(id: params[:sub_category_id])
+      if @edit_sub_category.nil?
+        redirect_to sub_categories_path
+      end
+    else
+      redirect_to sub_categories_path
+    end
   end
 
   def update_sub_category
