@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
 class Users::ConfirmationsController < Devise::ConfirmationsController
+  after_action :create_user_file, only: [:confirm]
+
   def show
     self.resource = resource_class.find_by_confirmation_token(params[:confirmation_token]) if params[:confirmation_token].present?
-    super if resource.nil? or resource.confirmed?
+    super if resource.nil? || resource.confirmed?
   end
 
   def confirm
@@ -11,7 +13,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
     if resource.update_attributes(resource_params) && resource.password_match?
       self.resource = resource_class.confirm_by_token(params[resource_name][:confirmation_token])
       set_flash_message :notice, :confirmed
-      redirect_to user_session_url
+      sign_in_and_redirect(resource_name, resource)
     else
       render 'show'
     end
@@ -28,9 +30,27 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
     end
   end
 
-   private
+  def create_user_file
+    user = current_user.id
+    file_name = "public/users/#{user}.min.js"
+    file = File.new(file_name, 'w')
+    file.close
+    copy_file_contents(file_name, user)
+  end
 
-    def resource_params
-      params[resource_name].except(:confirmation_token).permit(:email, :password, :password_confirmation)
-    end
+  def copy_file_contents(file_name, user)
+    src = File.open('app/javascript/packs/animation.min.js')
+    data = src.read
+    dest = File.open(file_name, 'w+')
+    dest.write("var user = '#{user}';")
+    dest.write(data)
+    src.close
+    dest.close
+  end
+
+  private
+
+  def resource_params
+    params[resource_name].except(:confirmation_token).permit(:email, :password, :password_confirmation)
+  end
 end

@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
-  # default_url_options :host => "localhost:3000"
-  devise_for :users ,controllers: {registrations: 'users/registrations', confirmations: "users/confirmations"}
+  devise_for :users ,controllers: { registrations: 'users/registrations',
+                                    confirmations: 'users/confirmations'
+                                  }
   devise_scope :user do
     root 'users/sessions#new'
     get '/users/sign_out' => 'devise/sessions#destroy'
-    patch "users/confirm" => "users/confirmations#confirm"
+    patch 'users/confirm' => 'users/confirmations#confirm'
   end
 
-  resources :themes
   resources :dashboard
   resources :categories
   resources :animation_datas

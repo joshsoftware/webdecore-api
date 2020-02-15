@@ -5,10 +5,7 @@ Rails.application.configure do
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
-  #
-  # # Do not eager load code on boot.•••••••
-  # config.eager_load = false•••••••
-  # Do not eager load code on boot.
+  
   config.eager_load = false
   # Show full error reports.
   config.consider_all_requests_local = true
@@ -46,27 +43,10 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
   config.assets.raise_runtime_errors = true
-  # config.action_mailer.delivery_method = :smtp
-  #   config.action_mailer.perform_deliveries = true
-  #   config.action_mailer.smtp_settings = {
-  #       :address => "smtp.gmail.com",
-  #       :port => 587,
-  #       :domain => "mail.google.com",
-  #       :user_name => "example@gmail.com",
-  #       :password => "somepassword",
-  #       :enable_starttls_auto => true
-  #   }
   # config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
-  # config.action_mailer.smtp_settings = {
-  # #   domain: 'localhost',
-  #  address: 'localhost',
-  #  port: 1025,
-  # #   authentication: :plain
-  # #   # enable_starttls_auto: true
-  # }
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker

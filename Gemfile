@@ -52,8 +52,7 @@ gem 'haml-rails', '~> 2.0', '>= 2.0.1'
 
 gem 'pundit', '~> 1.1'
 
-# gem 'mailcatcher', '~> 0.6.1'
-gem 'mailcatcher'
+gem 'rubocop', '~> 0.39.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
