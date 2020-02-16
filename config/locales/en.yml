@@ -35,3 +35,5 @@ en:
     exceptions:
       record_not_found: "Record Not Found"
   user_not_authorized: "You are not authorized"
+  unconfirmed_email_forgot_password: "First Confirm your email account"
+  email_does_not_exists: "Your email is not registered"

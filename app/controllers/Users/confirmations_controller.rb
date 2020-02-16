@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Users::ConfirmationsController < Devise::ConfirmationsController
-  after_action :create_user_file, only: [:confirm]
 
   def show
     self.resource = resource_class.find_by_confirmation_token(params[:confirmation_token]) if params[:confirmation_token].present?
@@ -14,6 +13,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
       self.resource = resource_class.confirm_by_token(params[resource_name][:confirmation_token])
       set_flash_message :notice, :confirmed
       sign_in_and_redirect(resource_name, resource)
+      create_user_file
     else
       render 'show'
     end
@@ -31,11 +31,10 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
   end
 
   def create_user_file
-    user = current_user.id
-    file_name = "public/users/#{user}.min.js"
+    file_name = "public/users/#{current_user.id}.min.js"
     file = File.new(file_name, 'w')
     file.close
-    copy_file_contents(file_name, user)
+    copy_file_contents(file_name, current_user.id)
   end
 
   def copy_file_contents(file_name, user)
