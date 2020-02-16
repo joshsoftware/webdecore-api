@@ -6,7 +6,6 @@
       Welcome
       %h3 Set password
       = bootstrap_form_for(resource, as: resource_name, url: users_confirm_path) do |f|
-        = render "devise/shared/error_messages", resource: resource
         .field
           = f.password_field :password, required: true
         .field
