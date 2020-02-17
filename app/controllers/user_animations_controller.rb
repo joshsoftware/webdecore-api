@@ -8,6 +8,7 @@ class UserAnimationsController < ApplicationController
 
   def new
     @animation_id = params[:animation_data_id]
+    @price = AnimationData.find(@animation_id).animation_price
     @category_id = params[:id]
     @sub_category_id = params[:sub_category_id]
   end
@@ -29,7 +30,7 @@ class UserAnimationsController < ApplicationController
   private
 
     def permit_params
-      params.require(:user_animation).permit(:start_date, :end_date, :location, :animation_data_id)
+      params.require(:user_animation).permit(:start_date, :end_date, :location, :animation_data_id, :amount)
     end
 
     def validate_date

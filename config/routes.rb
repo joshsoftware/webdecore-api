@@ -12,8 +12,8 @@ Rails.application.routes.draw do
   resources :dashboard
   resources :categories
   resources :animation_datas
-  resources :user_animations, only: [:index,:create]
-  # get 'welcome/index'
+  resources :user_animations, except: [:new]
+
   get 'users_details' => 'dashboard#users_details'
   get 'order_details' => 'dashboard#order_details'
 
