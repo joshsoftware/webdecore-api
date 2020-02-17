@@ -1,3 +1,5 @@
+%div.offset-sm-11
+  = link_to 'Back', categories_path, class: "btn btn-success"
 - if current_user.role == "admin"
   = button_to 'New Sub_category', new_sub_category_path(@primary_category), method: "get", class: "btn btn-primary"
 - n = 0
