@@ -3,6 +3,7 @@ class AnimationDatasController < ApplicationController
   def show
     @animations = AnimationData.where(category_id: params[:sub_category_id]).order(id: :ASC)
     if @animations.empty?
+      flash[:alert] = t('animation_not_found')
       redirect_to sub_categories_path
     end
     @primary_category_id = params[:id]
@@ -12,9 +13,11 @@ class AnimationDatasController < ApplicationController
   def demo
     @animation_json = AnimationData.find_by(id: params[:animation_data_id])
     if (@animation_json.nil?)
+      flash[:alert] = t('animation_not_found')
       redirect_to animations_path
+    else
+      @animation_json = @animation_json.animation_json.to_json
     end
-    @animation_json = @animation_json.animation_json.to_json
   end
 
   def new
@@ -28,8 +31,10 @@ class AnimationDatasController < ApplicationController
     params[:animation_datas][:category_id] = params[:sub_category_id]
     params[:animation_datas][:animation_json].force_encoding("UTF-8")
     if AnimationData.create(permit_params)
+      flash[:notice] = t('create_success')
       redirect_to animations_path
     else
+      flash[:alert] = t('create_error')
       redirect_to new_animation_path
     end
   end
@@ -37,6 +42,7 @@ class AnimationDatasController < ApplicationController
   def edit
     @animation = AnimationData.find_by(id: params[:animation_data_id])
     if @animation.nil?
+      flash[:alert] = t('animation_not_found')
       redirect_to animations_path
     end
   end
@@ -48,11 +54,13 @@ class AnimationDatasController < ApplicationController
       params[:animation_datas][:animation_json].force_encoding("UTF-8")
     end
     AnimationData.find_by(id: params[:animation_data_id]).update(permit_params)
+    flash[:notice] = t('update_success')
     redirect_to animations_path
   end
 
   def destroy
      AnimationData.find_by(id: params[:animation_data_id]).destroy
+     flash[:alert] = "Animation deleted"
      redirect_to animations_path
   end
 

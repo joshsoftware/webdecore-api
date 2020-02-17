@@ -13,9 +13,10 @@ class CategoriesController < ApplicationController
   def create
     @primary_category = Category.new(permit_params)
     if @primary_category.save
+      flash[:notice] = t('create_success')
       redirect_to categories_path
     else
-      flash[:alert] = "Error occured while creating"
+      flash[:alert] = t('create_error')
       redirect_to sub_categories_path(params[:id])
     end
 
@@ -26,9 +27,11 @@ class CategoriesController < ApplicationController
     if !@primary_category.nil? and @primary_category.primarycategory_id.nil?
       @categories = @primary_category.secondary_categories.order(id: :ASC)
       if @categories.empty?
+        flash[:alert] = t('category_not_found')
         redirect_to categories_path
       end
     else
+      flash[:alert] = t('category_not_found')
       redirect_to categories_path
     end
 
@@ -44,9 +47,10 @@ class CategoriesController < ApplicationController
     @new_sub_category = Category.new(permit_params)
     @new_sub_category.primarycategory_id = params[:id]
     if @new_sub_category.save
+      flash[:notice] = t('create_success')
       redirect_to sub_categories_path(params[:id])
     else
-      flash[:alert] = "Error occured while creating"
+      flash[:alert] = t('create_error')
       redirect_to sub_categories_path(params[:id])
     end
   end
@@ -54,6 +58,7 @@ class CategoriesController < ApplicationController
   def edit
     @edit_primary_category = Category.find_by(id: params[:id])
     if @edit_primary_category.nil?
+      flash[:alert] = t('category_not_found')
       redirect_to categories_path
     end
   end
@@ -67,6 +72,7 @@ class CategoriesController < ApplicationController
     if Category.where(id: params[:id]).exists?
       @edit_sub_category = Category.find_by(id: params[:sub_category_id])
       if @edit_sub_category.nil?
+        flash[:alert] = t('category_not_found')
         redirect_to sub_categories_path
       end
     else

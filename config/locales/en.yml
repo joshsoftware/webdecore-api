@@ -37,3 +37,8 @@ en:
   user_not_authorized: "You are not authorized"
   unconfirmed_email_forgot_password: "First Confirm your email account"
   email_does_not_exists: "Your email is not registered"
+  category_not_found: "Category does not exists"
+  create_error: "Error occurred in creation"
+  create_success: "Successfully created"
+  animation_not_found: "Animation Does not exists"
+  update_success: "Updated Successfully"
