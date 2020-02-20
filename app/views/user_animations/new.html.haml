@@ -14,7 +14,7 @@
         %p
         = form.date_field :start_date, min: Date.today, onchange: 'setDate(this.value)'
         %p
-        = form.date_field :end_date, min: Date.today, id: 'end_date', onchange: 'calcAmount(this.value)'
+        = form.text_field :end_date, class: 'string datepicker'
         %p
         = form.text_field :amount, value: @amount, readonly: true
         %p
