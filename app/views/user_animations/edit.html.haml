@@ -8,28 +8,17 @@
         %p
         = form.hidden_field :animation_data_id, value: @edit_order.animation_data_id
         %p
-        = form.date_field :start_date, min: Date.today, onchange: 'setDate()'
+        %label Start Date
+        %br/
+        %input#startDate{type: "text", class: 'form-control', name: "user_animation[start_date]", 
+                         onchange: 'calcAmount()', autocomplete: 'off',required: true}
         %p
-        = form.date_field :end_date, min: Date.today, id: 'end_date', onchange: 'calcAmount()'
+        %label End Date
+        %br/
+        %input#endDate{type: "text", class: 'form-control', name: "user_animation[end_date]", 
+                         onchange: 'calcAmount()', autocomplete: 'off',required: true}
         %p
         = form.text_field :amount, value: @amount, readonly: true
         %p
         = form.select :location, locations
         = form.submit
-
-:javascript
-  setDate = function(start_date){
-    start_date = document.getElementById('user_animation_start_date').value
-    document.getElementById('end_date').min = start_date;
-    calcAmount();
-  }
-
-  calcAmount = function()
-  {
-    price =  document.getElementById('user_animation_price').value
-    start_date = document.getElementById('user_animation_start_date').value
-    end_date = document.getElementById('user_animation_end_date').value
-    days = (Math.round((Date.parse(end_date) - Date.parse(start_date))/(1000*60*60*24)))+1
-    amount = (parseInt(price)) * days
-    document.getElementById('user_animation_amount').value = amount
-  }
