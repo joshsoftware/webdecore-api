@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'factories/animation_data'
+# require 'factories/animation_data'
 
 RSpec.describe AnimationData, type: :model do
   before(:each) do

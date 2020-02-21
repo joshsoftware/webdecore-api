@@ -1,5 +1,5 @@
 require 'rails_helper'
-require 'factories/users'
+# require 'factories/users'
 
 RSpec.describe User, type: :model do
   before(:each) do

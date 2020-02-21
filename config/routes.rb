@@ -30,7 +30,6 @@ Rails.application.routes.draw do
 
       get "edit" => "categories#edit_sub_category", as: :edit_sub_category
       patch "edit" => "categories#update_sub_category"
-      delete "destroy" => "categories#destroy_sub_category", as: :destroy_sub_category
 
         scope "animations/:animation_data_id" do
             get "purchase" => 'user_animations#new'
