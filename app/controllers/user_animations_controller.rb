@@ -81,7 +81,7 @@ class UserAnimationsController < ApplicationController
   private
 
     def permit_params
-      params.require(:user_animation).permit(:start_date, :end_date, :location, :animation_data_id, :amount)
+      params.require(:user_animation).permit(:start_date, :end_date, :location, :animation_data_id, :amount, :frequency)
     end
 
     def validate_date

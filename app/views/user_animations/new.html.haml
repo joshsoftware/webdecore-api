@@ -1,4 +1,5 @@
 -locations = ["Maharashtra", "Karnataka", "AP"]
+-frequency = [5,10,15,20]
 .container
   .row
     .col-lg-4.offset-lg-4
@@ -21,6 +22,8 @@
         %br/
         %input#endDate{type: "text",  class: 'form-control', name: "user_animation[end_date]", 
                        onchange: 'calcAmount()', autocomplete: 'off', required: true}
+        %p
+        = form.select :frequency, frequency, :label => 'Frequency of Animation(seconds)'
         %p
         = form.text_field :amount, value: @amount, readonly: true
         %p
