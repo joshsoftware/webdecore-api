@@ -15,12 +15,12 @@
         %label Start Date
         %br/
         %input#startDate{type: "text", class: 'form-control', name: "user_animation[start_date]", 
-                         onchange: 'calcAmount()', autocomplete: 'off',required: true}
+                         onchange: 'calcAmount()', autocomplete: 'off', required: true}
         %p
         %label End Date
         %br/
         %input#endDate{type: "text",  class: 'form-control', name: "user_animation[end_date]", 
-                       onchange: 'calcAmount()', autocomplete: 'off',required: true}
+                       onchange: 'calcAmount()', autocomplete: 'off', required: true}
         %p
         = form.text_field :amount, value: @amount, readonly: true
         %p
