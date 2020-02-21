@@ -13,7 +13,7 @@ window.callback = function(data){
  var animation = sessionStorage.getItem('animation');
  if(animation === null){
    var xhttp = new XMLHttpRequest();
-   xhttp.open("GET", "http://192.168.1.100:3000/api/v1/animation_datas?user_id="+user+"&location="+loc, true);
+   xhttp.open("GET", "http://localhost:3000/api/v1/animation_datas?user_id="+user+"&location="+loc, true);
    xhttp.send();
    xhttp.onreadystatechange = function() {
      if (this.readyState == 4 && this.status == 200) {
@@ -33,7 +33,7 @@ function playAnimation(animation){
  var animData = {
    container: document.body,
    animType: 'svg',
-   loop: true,
+   loop: 2,
    prerender: true,
    autoplay: true,
    animationData: animation,
@@ -44,6 +44,7 @@ function playAnimation(animation){
  }
  if(document.getElementsByClassName("lottie").length == 0){
    var anim = bodymovin.loadAnimation(animData);
+   anim.setSubframe(false)
  }
  else {
    var anim = document.getElementsByClassName("lottie")[0];
@@ -56,4 +57,25 @@ function playAnimation(animation){
  html.style.background = "transparent";
  html.style.top = 0;
  html.style.left = 0;
+ anim.onComplete = function(){
+   console.log("comp")
+ var element = animData.container.getElementsByClassName("lottie")[0];
+ element.parentNode.removeChild(element);
+ setTimeout(time, 5000);
+}
+function time(){
+  console.log("timer")
+  var anim = bodymovin.loadAnimation(animData);
+  var html = animData.container.getElementsByClassName("lottie")[0];
+  html.style.position = "fixed";
+  html.style.top = 0;
+  html.style.left = 0;
+  html.style.pointerEvents = "none";
+  anim.onComplete = function(){
+  console.log("comp")
+   var element = animData.container.getElementsByClassName("lottie")[0];
+   element.parentNode.removeChild(element);
+   setTimeout(time, 5000);
+  }
+}
 }
