@@ -25,4 +25,10 @@ RSpec.describe User, type: :model do
     expect(@user_data.errors.messages.blank?).to eq true
   end
 
+  # it 'should not have blank confirm password' do
+  #   @user_data = build(:user, confirmation_token: nil)
+  #   expect(@user_data.valid?).to eq false
+  # end
+
+
 end
