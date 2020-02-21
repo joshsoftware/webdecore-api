@@ -1,4 +1,5 @@
 -locations = ["Maharashtra", "Karnataka", "AP"]
+-flash[:notice]
 .container
   .row
     .col-lg-4.offset-lg-4
@@ -10,12 +11,12 @@
         %p
         %label Start Date
         %br/
-        %input#startDate{type: "text", class: 'form-control', name: "user_animation[start_date]", 
+        %input#startDate{type: "text", class: 'form-control', name: "user_animation[start_date]",
                          onchange: 'calcAmount()', autocomplete: 'off', required: true}
         %p
         %label End Date
         %br/
-        %input#endDate{type: "text", class: 'form-control', name: "user_animation[end_date]", 
+        %input#endDate{type: "text", class: 'form-control', name: "user_animation[end_date]",
                          onchange: 'calcAmount()', autocomplete: 'off', required: true}
         %p
         = form.text_field :amount, value: @amount, readonly: true

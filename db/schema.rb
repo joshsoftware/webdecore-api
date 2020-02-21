@@ -36,6 +36,22 @@ ActiveRecord::Schema.define(version: 2020_02_18_061348) do
     t.index ["primarycategory_id"], name: "index_categories_on_primarycategory_id"
   end
 
+  create_table "roles", force: :cascade do |t|
+    t.string "role_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "themes", force: :cascade do |t|
+    t.string "theme_name"
+    t.boolean "active"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "animation"
+    t.index ["user_id"], name: "index_themes_on_user_id"
+  end
+
   create_table "user_animations", force: :cascade do |t|
     t.date "start_date"
     t.date "end_date"
@@ -71,4 +87,5 @@ ActiveRecord::Schema.define(version: 2020_02_18_061348) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "themes", "users"
 end

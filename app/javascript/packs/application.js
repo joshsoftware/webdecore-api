@@ -8,6 +8,7 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 require("bootstrap")
+<<<<<<< HEAD
 
 import "bootstrap-datepicker"
 import "packs/datepicker"
