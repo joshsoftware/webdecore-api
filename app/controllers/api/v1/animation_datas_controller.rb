@@ -3,12 +3,12 @@ module Api
     class AnimationDatasController < ApplicationController
       skip_before_action :authenticate_user!
       def index
-        
-        @animation_record = UserAnimation.find_by("user_id = ? AND location = ? AND start_date <= ? 
+
+        @animation_record = UserAnimation.find_by("user_id = ? AND location = ? AND start_date <= ?
         AND end_date >= ?", params['user_id'], params['location'], Date.today, Date.today)
         if (@animation_record)
           @animation = AnimationData.find(@animation_record.animation_data_id).animation_json
-          render json: @animation.as_json
+          render json: {animation: @animation.as_json, frequency: @animation_record.frequency}
         else
           render json: {}
         end

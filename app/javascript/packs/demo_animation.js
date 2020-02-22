@@ -10,42 +10,34 @@ show = function(animation){
   	rendererSettings: {
       className: 'lottie',
   		preserveAspectRatio: 'none',
-      progressiveLoad: true
   	}
 	};
 var anim = bodymovin.loadAnimation(animData);
-setTimeout(function () {
+setStyle();
+
+function setStyle(){
   var html = animData.container.getElementsByClassName("lottie")[0];
   html.style.position = "fixed";
   html.style.top = 0;
   html.style.left = 0;
   html.style.pointerEvents = "none";
-	}, 100);
   anim.setSubframe(false);
-  anim.onComplete = function(){
-    console.log("comp")
-   var element = animData.container.getElementsByClassName("lottie")[0];
-   element.parentNode.removeChild(element);
-   setTimeout(time, frequency);
   }
-  function time(){
-    console.log("timer")
-    var anim = bodymovin.loadAnimation(animData);
-    var html = animData.container.getElementsByClassName("lottie")[0];
-    html.style.position = "fixed";
-    html.style.top = 0;
-    html.style.left = 0;
-    html.style.pointerEvents = "none";
-    anim.onComplete = function(){
-    console.log("comp")
-     var element = animData.container.getElementsByClassName("lottie")[0];
-     element.parentNode.removeChild(element);
-     setTimeout(time, frequency);
-    }
+
+animationComplete = function(){
+  var element = animData.container.getElementsByClassName("lottie")[0];
+  element.parentNode.removeChild(element);
+  setTimeout(timer, 5000);
+  }
+anim.onComplete = animationComplete;
+
+function timer(){
+  var anim = bodymovin.loadAnimation(animData);
+  setStyle();
+  anim.onComplete = animationComplete;
   }
 }
 
 setDate = function(start_date){
   document.getElementById('end_date').min = start_date
 }
-var frequency = 5000;
