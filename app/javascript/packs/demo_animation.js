@@ -3,7 +3,7 @@ show = function(animation){
 	var animData = {
     container: document.body,
   	animType: 'svg',
-  	loop: true,
+  	loop: 1,
   	prerender: true,
   	autoplay: true,
     animationData: animation,
@@ -12,13 +12,13 @@ show = function(animation){
   		preserveAspectRatio: 'none',
   	}
 	};
-var anim = bodymovin.loadAnimation(animData);
-setTimeout(function () {
-  var html = animData.container.getElementsByClassName("lottie")[0];
-  html.style.position = "fixed";
-  html.style.top = 0;
-  html.style.left = 0;
-  html.style.pointerEvents = "none";
+  var anim = bodymovin.loadAnimation(animData);
+  setTimeout(function () {
+    var html = animData.container.getElementsByClassName("lottie")[0];
+    html.style.position = "fixed";
+    html.style.top = 0;
+    html.style.left = 0;
+    html.style.pointerEvents = "none";
 	}, 100);
 }
 
