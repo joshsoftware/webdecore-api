@@ -3,10 +3,10 @@
   .row
     .col-lg-4.offset-lg-4
       %h3 Update Animation Details
-      = bootstrap_form_with model: @edit_order, url: user_animation_path, local: true do |form|
+      = bootstrap_form_with model: @order, url: user_animation_path, local: true do |form|
         = form.hidden_field :price, value: @price, readonly: true
         %p
-        = form.hidden_field :animation_data_id, value: @edit_order.animation_data_id
+        = form.hidden_field :animation_data_id, value: @order.animation_data_id
         %p
         %label Start Date
         %br/
