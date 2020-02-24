@@ -8,7 +8,7 @@ class UserAnimationsController < ApplicationController
 
   def new
     @animation_id = params[:animation_data_id]
-    @price = AnimationData.find(@animation_id).animation_price
+    @price = AnimationData.find_by(id: @animation_id).animation_price
     @category_id = params[:id]
     @sub_category_id = params[:sub_category_id]
   end
@@ -28,24 +28,29 @@ class UserAnimationsController < ApplicationController
   end
 
   def destroy
-    delete_order = UserAnimation.where(id: params[:id]).first
-    if delete_order.destroy
-      flash[:alert] = t('delete_success')
-      redirect_to user_animations_path
+    order = UserAnimation.where(id: params[:id]).first
+    if order.present?
+      if order.destroy
+        flash[:alert] = t('delete_success')
+      else
+        flash[:alert] = t('delete_error')
+      end
     else
-      flash[:alert] = t('delete_error')
-      redirect_to user_animations_path
+      flash[:alert] = t('order_not_found')
     end
+    redirect_to user_animations_path
   end
 
   def edit
-    @edit_order = UserAnimation.where(id: params[:id]).first
+    @order = UserAnimation.where(id: params[:id]).first
+    @animation_id = @order.animation_data_id
+    @price = AnimationData.find_by(id: @animation_id).animation_price
   end
 
   def update
-    update_user = UserAnimation.where(id: params[:id]).first
+    user = UserAnimation.where(id: params[:id]).first
     if edit_validate_date
-      if update_user.update(permit_params)
+      if user.update(permit_params)
         flash[:notice] = t('update_success')
         redirect_to user_animations_path
       else
@@ -59,10 +64,19 @@ class UserAnimationsController < ApplicationController
   end
 
   def inactive
-    inactive_order = UserAnimation.where(id: params[:id]).first
-    inactive_order.update(status: "Inactive")
-    flash[:notice] = t('deactivate_success')
-    redirect_to user_animations_path
+    order = UserAnimation.where(id: params[:id]).first
+    if order.present?
+      if order.update!(status: "Inactive")
+        flash[:notice] = t('deactivate_success')
+        redirect_to user_animations_path
+      else
+        flash[:notice] = t('deactivate_error')
+        redirect_to user_animations_path
+      end
+    else
+      flash[:alert] = t('order_not_found')
+      redirect_to user_animations_path
+    end
   end
   private
 
@@ -85,8 +99,8 @@ class UserAnimationsController < ApplicationController
       new_start = params[:user_animation][:start_date]
       new_end = params[:user_animation][:end_date]
       location = params[:user_animation][:location]
-      @orders = UserAnimation.where(user_id: current_user.id, location: location, status: "Active")
-                .where.not(id: params[:id])
+      @orders = UserAnimation.where(user_id: current_user.id, location: location, status: "Active").
+        where.not(id: params[:id])
       @orders.none? do |order|
         (new_start.to_date >= order.start_date && new_start.to_date <= order.end_date) ||
         (new_start.to_date <= order.start_date && new_end.to_date >= order.start_date)
