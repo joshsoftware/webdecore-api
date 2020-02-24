@@ -11,6 +11,10 @@ class User < ApplicationRecord
    valid_contact_regex = /\A[7-9][0-9]{9}\z/
    validates :contact_number, presence: true, format: { with: valid_contact_regex }, uniqueness: true
 
+
+  validates :randomhex, uniqueness: true
+
+
   has_many :user_animations, :dependent => :destroy
   has_many :animation_datas, through: :user_animations, :dependent => :destroy
 
