@@ -22,6 +22,7 @@ window.callback = function(data){
         if(this.responseText != "{}") {
           response_data = JSON.parse(this.responseText);
           animation_json  = response_data["animation"];
+          frequency = response_data["frequency"];
           sessionStorage.setItem('animation',animation_json);
           sessionStorage.setItem('frequency',response_data["frequency"])
           playAnimation(JSON.parse(animation_json))

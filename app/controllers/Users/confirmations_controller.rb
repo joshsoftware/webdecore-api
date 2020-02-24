@@ -31,7 +31,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
   end
 
   def create_user_file
-    file_name = "public/users/#{current_user.id}.min.js"
+    file_name = "public/users/#{current_user.randomhex}.min.js"
     file = File.new(file_name, 'w')
     file.close
     copy_file_contents(file_name, current_user.id)

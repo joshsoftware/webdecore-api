@@ -10,9 +10,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super
+    resource.randomhex = SecureRandom.hex(10)
+    resource.save
+  end
 
   # GET /resource/edit
   # def edit
@@ -46,6 +48,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def delete_user_file
-    File.delete("public/users/#{current_user.id}.min.js")
+    File.delete("public/users/#{current_user.randomhex}.min.js")
   end
 end
