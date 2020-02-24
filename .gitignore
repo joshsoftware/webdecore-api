@@ -33,3 +33,4 @@ yarn-debug.log*
 /public/uploads
 /public/users
 /public/animations
+/app/assets/images
