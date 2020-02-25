@@ -2,10 +2,6 @@
 class AnimationDatasController < ApplicationController
   def show
     @animations = AnimationData.where(category_id: params[:sub_category_id]).order(id: :ASC)
-    if @animations.empty?
-      flash[:alert] = t('animation_not_found')
-      redirect_to sub_categories_path
-    end
     @primary_category_id = params[:id]
     @secondary_category_id = params[:sub_category_id]
   end
@@ -26,16 +22,18 @@ class AnimationDatasController < ApplicationController
   end
 
   def create
-    file_data = params[:animation_datas][:animation_json].read
-    params[:animation_datas][:animation_json] = file_data.as_json
-    params[:animation_datas][:category_id] = params[:sub_category_id]
-    params[:animation_datas][:animation_json].force_encoding("UTF-8")
-    if AnimationData.create(permit_params)
-      flash[:notice] = t('create_success')
-      redirect_to animations_path
+    if (!params[:animation_datas].nil? and !params[:animation_datas][:animation_json].nil?)
+      file_data = params[:animation_datas][:animation_json].read
+      params[:animation_datas][:animation_json] = file_data.as_json
+      params[:animation_datas][:category_id] = params[:sub_category_id]
+      params[:animation_datas][:animation_json].force_encoding("UTF-8")
+      if AnimationData.create(permit_params)
+        flash[:notice] = t('create_success')
+        redirect_to animations_path
+      end
     else
       flash[:alert] = t('create_error')
-      redirect_to new_animation_path
+      render :new
     end
   end
 

@@ -17,29 +17,23 @@ class CategoriesController < ApplicationController
       redirect_to categories_path
     else
       flash[:alert] = t('create_error')
-      redirect_to sub_categories_path(params[:id])
+      render :new
     end
-
   end
 
   def show
     @primary_category = Category.find_by(id: params[:id])
-    if !@primary_category.nil? and @primary_category.primarycategory_id.nil?
+    if !@primary_category.nil?
       @categories = @primary_category.secondary_categories.order(id: :ASC)
-      if @categories.empty?
-        flash[:alert] = t('category_not_found')
-        redirect_to categories_path
-      end
     else
       flash[:alert] = t('category_not_found')
       redirect_to categories_path
     end
-
   end
 
   def new_sub_category
     @new_sub_category = Category.new
-    authorize @new_sub_category
+    authorize   @new_sub_category
     @primary_category_id = params[:id]
   end
 
@@ -48,10 +42,10 @@ class CategoriesController < ApplicationController
     @new_sub_category.primarycategory_id = params[:id]
     if @new_sub_category.save
       flash[:notice] = t('create_success')
-      redirect_to sub_categories_path(params[:id])
+      redirect_to sub_categories_path
     else
       flash[:alert] = t('create_error')
-      redirect_to sub_categories_path(params[:id])
+      render :new_sub_category
     end
   end
 
@@ -76,23 +70,29 @@ class CategoriesController < ApplicationController
         redirect_to sub_categories_path
       end
     else
+      flash[:alert] = t('category_not_found')
       redirect_to sub_categories_path
     end
   end
 
   def update_sub_category
-    Category.find_by(id: params[:sub_category_id]).update(permit_params)
-    redirect_to sub_categories_path(params[:id])
+    if Category.find_by(id: params[:sub_category_id]).present?
+      Category.find_by(id: params[:sub_category_id]).update(permit_params)
+      redirect_to sub_categories_path(params[:id])
+    else
+      flash[:alert] = t('update_failure')
+      render :edit_sub_category
+    end
   end
 
   def destroy
-    Category.find_by(id: params[:id]).destroy
-    redirect_to categories_path
-  end
-
-  def destroy_sub_category
-   Category.find_by(id: params[:sub_category_id]).destroy
-   redirect_to sub_categories_path(params[:id])
+    if  Category.find_by(id: params[:id]).primarycategory_id.nil?
+      Category.find_by(id: params[:id]).destroy
+      redirect_to categories_path
+    else
+      Category.find_by(id: params[:id]).destroy
+      redirect_to sub_categories_path
+    end
   end
 
   private

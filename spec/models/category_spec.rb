@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'factories/categories'
+# require 'factories/categories'
 
 RSpec.describe Category, type: :model do
   before(:each) do
