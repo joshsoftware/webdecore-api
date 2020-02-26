@@ -1,4 +1,5 @@
 var frequency;
+var anim;
 var script = document.createElement('script');
 script.type = 'text/javascript';
 script.src = 'https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.5.9/lottie.js';
@@ -15,7 +16,7 @@ window.callback = function(data){
   frequency = sessionStorage.getItem('frequency');
   if(animation === null){
     var xhttp = new XMLHttpRequest();
-    xhttp.open("GET","http://localhost:3000/api/v1/animation_datas?user_id="+user+"&location="+loc,true);
+    xhttp.open("GET","http://localhost:3000/api/v1/animation_datas?randomhex="+user+"&location="+loc,true);
     xhttp.send();
     xhttp.onreadystatechange = function(){
       if(this.readyState == 4 && this.status == 200){
@@ -53,12 +54,12 @@ function playAnimation(animation){
   }
 
   if(document.getElementsByClassName("lottie").length == 0){
-    var anim = bodymovin.loadAnimation(animData);
+    anim = bodymovin.loadAnimation(animData);
     setStyle();
     anim.setSubframe(false);
   }
   else{
-    var anim = document.getElementsByClassName("lottie")[0];
+    anim = document.getElementsByClassName("lottie")[0];
     document.body.removeChild(anim);
     anim = bodymovin.loadAnimation(animData);
     setStyle();
@@ -72,16 +73,24 @@ function playAnimation(animation){
     html.style.top = 0;
     html.style.left = 0;
   }
-  animationComplete = function(){
+  function animationComplete(){
     var element = animData.container.getElementsByClassName("lottie")[0];
     element.parentNode.removeChild(element);
     setTimeout(timer, frequency*1000);
     }
-  anim.onComplete = animationComplete;
+  anim.onComplete = function() {
+    var element = animData.container.getElementsByClassName("lottie")[0];
+    element.parentNode.removeChild(element);
+    setTimeout(timer, frequency*1000);
+  }
 
   function timer(){
-    var anim = bodymovin.loadAnimation(animData);
+    anim = bodymovin.loadAnimation(animData);
     setStyle();
-    anim.onComplete = animationComplete;
+    anim.onComplete = function() {
+      var element = animData.container.getElementsByClassName("lottie")[0];
+      element.parentNode.removeChild(element);
+      setTimeout(timer, frequency*1000);
+    }
   }
 }
