@@ -19,7 +19,7 @@ show = function(animation){
     html.style.top = 0;
     html.style.left = 0;
     html.style.pointerEvents = "none";
-	}, 100);
+  }, 100);
 }
 
 setDate = function(start_date){
