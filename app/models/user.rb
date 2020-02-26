@@ -13,6 +13,7 @@ class User < ApplicationRecord
 
   has_many :user_animations, :dependent => :destroy
   has_many :animation_datas, through: :user_animations, :dependent => :destroy
+  has_many :themes
 
   before_save :titleize_names
 
