@@ -12,7 +12,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     super
-    resource.randomhex = SecureRandom.hex(10)
+    resource.randomhex = SecureRandom.uuid
     resource.save
   end
 

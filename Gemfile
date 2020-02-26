@@ -89,3 +89,5 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'rake', '<11'
 
 gem 'rack-cors', '~> 1.1', '>= 1.1.1'
+
+gem 'jsobfu'

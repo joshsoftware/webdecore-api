@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+require 'jsobfu'
 class Users::ConfirmationsController < Devise::ConfirmationsController
 
   def show
@@ -34,7 +34,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
     file_name = "public/users/#{current_user.randomhex}.min.js"
     file = File.new(file_name, 'w')
     file.close
-    copy_file_contents(file_name, current_user.id)
+    copy_file_contents(file_name, current_user.randomhex)
   end
 
   def copy_file_contents(file_name, user)
@@ -45,6 +45,17 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
     dest.write(data)
     src.close
     dest.close
+    obfuscate_file(file_name)
+  end
+
+  def obfuscate_file(file_name)
+    file = File.open(file_name, 'r')
+    file_data = file.read
+    file.reopen(file_name, 'w')
+    jsobfus = JSObfu.new(file_data)
+    obfuscated_data = jsobfus.obfuscate
+    file.write(obfuscated_data)
+    file.close
   end
 
   private
