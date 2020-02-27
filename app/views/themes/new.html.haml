@@ -1,0 +1,31 @@
+%div.offset-sm-11
+  = link_to 'Back', dashboard_index_path, class: "btn btn-success"
+.container-fluid
+  .row
+    .col-md-4.offset-md-4
+      %h1 Add Themes
+      = bootstrap_form_with scope: :theme, url: themes_path,local: true do |form|
+        %p
+          = form.hidden_field :user_id, value: @user_id
+        %p
+          = form.text_field :theme_name, required: true
+        %p
+          = form.file_field :picture, required: true, id:"picture", onchange: "picture_file(this)"
+        %p
+          = form.file_field :theme_json, required: true, id:"json", onchange: "json_file(this)"
+        %p  
+          = form.submit
+      = button_to 'Cancel', themes_path, method: "get", class: "btn btn-success", :style => "float: left"
+
+
+:javascript
+  function picture_file(element){
+    var fileName = document.getElementById("picture").files[0].name;
+    var nextSibling = element.nextElementSibling;
+    nextSibling.innerText = fileName;
+  }
+  function json_file(element){
+    var fileName = document.getElementById("json").files[0].name;
+    var nextSibling = element.nextElementSibling;
+    nextSibling.innerText = fileName;
+  }      

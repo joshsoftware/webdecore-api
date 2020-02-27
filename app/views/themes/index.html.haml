@@ -1,0 +1,17 @@
+%div.offset-sm-11
+  = link_to 'Back', dashboard_index_path, class: "btn btn-success"
+- n = 0
+- count = @themes.count
+- outer = (count - 1) / 4 + 1
+.container-fluid.justify-content-center
+  - outer.times do
+    .row.justify-content-left.my-4
+      - 4.times do
+        - break if n >= count
+        .card.col-md-3.p-3.text-center{:style => "height: 32rem"}
+          %img.img-fluid{:alt => "hii", :src => "#{@themes[n].picture.url}", :style => "height: 40%"}
+          %h5.card-title.text-center.pt-3= @themes[n].theme_name
+          = button_to 'Show Demo', demo_path(@themes[n].id), method: "get", class: "btn btn-primary", :style => "float: center"
+          %p
+          = button_to 'Apply Theme', demo_path(@themes[n].id), method: "get", class: "btn btn-primary", :style => "float: center"
+        - n+=1

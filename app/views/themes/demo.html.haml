@@ -1,0 +1,273 @@
+
+=javascript_pack_tag 'demo_animation'
+%body{onload: "show(animation)"}
+
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title W3.CSS Template
+    %meta{:charset => "UTF-8"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %link{:href => "https://www.w3schools.com/w3css/4/w3.css", :rel => "stylesheet"}/
+    %link{:href => "https://fonts.googleapis.com/css?family=Karma", :rel => "stylesheet"}/
+    :css
+      body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
+      .w3-bar-block .w3-bar-item {padding:20px}
+  %body
+    %center
+      .jumbotron
+        %h1{style:'font-size:100px'} Josh Foods!
+        %p.lead This is a site displaying food items.
+        %hr.my
+        %p It works considering user food tasting experience.
+        %p.lead
+          = link_to 'Back', themes_path,{class: "btn btn-success", style: 'float:left'}
+    .w3-main.w3-content.w3-padding{:style => "max-width:1200px;margin-top:100px"}
+      #food.w3-row-padding.w3-padding-16.w3-center
+        .w3-quarter
+          %img{:alt => "Sandwich", :src => image_url("1.jpeg"), :style => "width:100%"}/
+          %h3 The Perfect Sandwich, A Real NYC Classic
+          %p Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.
+          %button.btn.btn-info.btn-md{:onclick => "myFunction()"} Click Here
+          :javascript
+            function myFunction() {
+              alert("I am an alert box!");
+            }  
+        .w3-quarter
+          %img{:alt => "Steak", :src => image_url("16.jpeg"), :style => "width:100%"}/
+          %h3 Let Me Tell You About This Steak
+          %p Once again, some random text to lorem lorem lorem lorem ipsum text.
+          .container
+            %button.btn.btn-info.btn-md{"data-target" => "#myModal", "data-toggle" => "modal", type: "button"} Click Here
+            #myModal.modal.fade{role: "dialog"}
+              .modal-dialog
+                .modal-content
+                  .modal-body
+                    %p Some text in the modal.
+                  .modal-footer
+                    %button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Close
+        .w3-quarter
+          %img{:alt => "Cherries", :src => image_url("3.jpeg"), :style => "width:100%"}/
+          %h3 Cherries, interrupted and Vegetables
+          %p Lorem ipsum text praesent tincidunt ipsum lipsum.
+          .container
+            %button.btn.btn-info.btn-md{"data-target" => "#myModal", "data-toggle" => "modal", type: "button"} Click Here
+            #myModal.modal.fade{role: "dialog"}
+              .modal-dialog
+                .modal-content
+                  .modal-body
+                    %p Some text in the modal.
+                  .modal-footer
+                    %button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Close
+        .w3-quarter
+          %img{:alt => "Pasta and Wine", :src => image_url("4.jpeg"), :style => "width:100%"}/
+          %h3 Once Again, Robust Wine and Vegetable Pasta
+          %p Lorem ipsum text praesent tincidunt ipsum lipsum.
+          .container
+            %button.btn.btn-info.btn-md{"data-target" => "#myModal", "data-toggle" => "modal", type: "button"} Click Here
+            #myModal.modal.fade{role: "dialog"}
+              .modal-dialog
+                .modal-content
+                  .modal-body
+                    %p Some text in the modal.
+                  .modal-footer
+                    %button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Close
+      / Second Photo Grid
+      .w3-row-padding.w3-padding-16.w3-center
+        .w3-quarter
+          %img{:alt => "Popsicle", :src => image_url("5.jpeg"), :style => "width:100%"}/
+          %h3 All I Need Is a Popsicle
+          %p Lorem ipsum text praesent tincidunt ipsum lipsum.
+          .container
+            %button.btn.btn-info.btn-md{"data-target" => "#myModal", "data-toggle" => "modal", type: "button"} Click Here
+            #myModal.modal.fade{role: "dialog"}
+              .modal-dialog
+                .modal-content
+                  .modal-body
+                    %p Some text in the modal.
+                  .modal-footer
+                    %button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Close
+        .w3-quarter
+          %img{:alt => "Salmon", :src => image_url("6.jpeg"), :style => "width:100%"}/
+          %h3 Salmon For Your Skin
+          %p Once again, some random text to lorem lorem lorem lorem ipsum text praesent.
+          .container
+            %button.btn.btn-info.btn-md{"data-target" => "#myModal", "data-toggle" => "modal", type: "button"} Click Here
+            #myModal.modal.fade{role: "dialog"}
+              .modal-dialog
+                .modal-content
+                  .modal-body
+                    %p Some text in the modal.
+                  .modal-footer
+                    %button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Close
+        .w3-quarter
+          %img{:alt => "Sandwich", :src => image_url("7.jpeg"), :style => "width:100%"}/
+          %h3 The Perfect Sandwich
+          %p Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.
+          .container
+            %button.btn.btn-info.btn-md{"data-target" => "#myModal", "data-toggle" => "modal", type: "button"} Click Here
+            #myModal.modal.fade{role: "dialog"}
+              .modal-dialog
+                .modal-content
+                  .modal-body
+                    %p Some text in the modal.
+                  .modal-footer
+                    %button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Close
+        .w3-quarter
+          %img{:alt => "Croissant", :src => image_url("8.jpeg"), :style => "width:100%"}/
+          %h3 Le French
+          %p Lorem lorem lorem lorem ipsum text praesent tincidunt ipsum lipsum.
+          .container
+            %button.btn.btn-info.btn-md{"data-target" => "#myModal", "data-toggle" => "modal", type: "button"} Click Here
+            #myModal.modal.fade{role: "dialog"}
+              .modal-dialog
+                .modal-content
+                  .modal-body
+                    %p Some text in the modal.
+                  .modal-footer
+                    %button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Close
+
+        .w3-row-padding.w3-padding-16.w3-center
+        .w3-quarter
+          %img{:alt => "Popsicle", :src => image_url("9.jpeg"), :style => "width:100%"}/
+          %h3 All I Need Is a Popsicle
+          %p Lorem ipsum text praesent tincidunt ipsum lipsum.
+          .container
+            %button.btn.btn-info.btn-md{"data-target" => "#myModal", "data-toggle" => "modal", type: "button"} Click Here
+            #myModal.modal.fade{role: "dialog"}
+              .modal-dialog
+                .modal-content
+                  .modal-body
+                    %p Some text in the modal.
+                  .modal-footer
+                    %button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Close
+        .w3-quarter
+          %img{:alt => "Salmon", :src => image_url("10.jpeg"), :style => "width:100%"}/
+          %h3 Salmon For Your Skin
+          %p Once again, some random text to lorem lorem lorem lorem ipsum text praesent.
+          .container
+            %button.btn.btn-info.btn-md{"data-target" => "#myModal", "data-toggle" => "modal", type: "button"} Click Here
+            #myModal.modal.fade{role: "dialog"}
+              .modal-dialog
+                .modal-content
+                  .modal-body
+                    %p Some text in the modal.
+                  .modal-footer
+                    %button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Close
+        .w3-quarter
+          %img{:alt => "Sandwich", :src => image_url("11.jpeg"), :style => "width:100%"}/
+          %h3 The Perfect Sandwich
+          %p Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.
+          .container
+            %button.btn.btn-info.btn-md{"data-target" => "#myModal", "data-toggle" => "modal", type: "button"} Click Here
+            #myModal.modal.fade{role: "dialog"}
+              .modal-dialog
+                .modal-content
+                  .modal-body
+                    %p Some text in the modal.
+                  .modal-footer
+                    %button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Close
+        .w3-quarter
+          %img{:alt => "Croissant", :src => image_url("12.jpeg"), :style => "width:100%"}/
+          %h3 Le French
+          %p Lorem lorem lorem lorem ipsum text praesent tincidunt ipsum lipsum.
+          .container
+            %button.btn.btn-info.btn-md{"data-target" => "#myModal", "data-toggle" => "modal", type: "button"} Click Here
+            #myModal.modal.fade{role: "dialog"}
+              .modal-dialog
+                .modal-content
+                  .modal-body
+                    %p Some text in the modal.
+                  .modal-footer
+                    %button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Close
+
+        .w3-row-padding.w3-padding-16.w3-center
+        .w3-quarter
+          %img{:alt => "Popsicle", :src => image_url("13.jpeg"), :style => "width:100%"}/
+          %h3 All I Need Is a Popsicle
+          %p Lorem ipsum text praesent tincidunt ipsum lipsum.
+          .container
+            %button.btn.btn-info.btn-md{"data-target" => "#myModal", "data-toggle" => "modal", type: "button"} Click Here
+            #myModal.modal.fade{role: "dialog"}
+              .modal-dialog
+                .modal-content
+                  .modal-body
+                    %p Some text in the modal.
+                  .modal-footer
+                    %button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Close
+        .w3-quarter
+          %img{:alt => "Salmon", :src => image_url("14.jpeg"), :style => "width:100%"}/
+          %h3 Salmon For Your Skin
+          %p Once again, some random text to lorem lorem lorem lorem ipsum text praesent.
+          .container
+            %button.btn.btn-info.btn-md{"data-target" => "#myModal", "data-toggle" => "modal", type: "button"} Click Here
+            #myModal.modal.fade{role: "dialog"}
+              .modal-dialog
+                .modal-content
+                  .modal-body
+                    %p Some text in the modal.
+                  .modal-footer
+                    %button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Close
+        .w3-quarter
+          %img{:alt => "Sandwich", :src => image_url("15.jpeg"), :style => "width:100%"}/
+          %h3 The Perfect Sandwich
+          %p Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.
+          .container
+            %button.btn.btn-info.btn-md{"data-target" => "#myModal", "data-toggle" => "modal", type: "button"} Click Here
+            #myModal.modal.fade{role: "dialog"}
+              .modal-dialog
+                .modal-content
+                  .modal-body
+                    %p Some text in the modal.
+                  .modal-footer
+                    %button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Close
+        .w3-quarter
+          %img{:alt => "Croissant", :src => image_url("16.jpeg"), :style => "width:100%"}/
+          %h3 Le French
+          %p Lorem lorem lorem lorem ipsum text praesent tincidunt ipsum lipsum.
+          .container
+            %button.btn.btn-info.btn-md{"data-target" => "#myModal", "data-toggle" => "modal", type: "button"} Click Here
+            #myModal.modal.fade{role: "dialog"}
+              .modal-dialog
+                .modal-content
+                  .modal-body
+                    %p Some text in the modal.
+                  .modal-footer
+                    %button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Close  
+  %footer.section.footer-classic.context-dark.bg-image{style: "background: lightgrey;"}
+    .container
+      .row.row-30
+        .col-md-4.col-xl-5
+          .pr-xl-4
+            %a.brand{href: "index.html"}
+              
+            %p We are an award-winning creative agency, dedicated to the best result in web design, promotion, business consulting, and marketing.
+            / Rights
+            %p.rights
+              %span © 
+              %span.copyright-year 2018
+              %span  
+              %span Waves
+              %span . 
+              %span All Rights Reserved.
+        .col-md-4
+          %h5 Contacts
+          %dl.contact-list
+            %dt Address:
+            %dd 798 South Park Avenue, Jaipur, Raj
+        .col-md-4.col-xl-3
+          %h5 Links
+          %ul.nav-list
+            %li
+              %a{href: "#"} About
+            %li
+              %a{href: "#"} Projects
+            %li
+              %a{href: "#"} Blog
+            %li
+              %a{href: "#"} Contacts
+            %li
+              %a{href: "#"} Pricing
+:javascript
+  window.animation = #{@theme_json.html_safe}

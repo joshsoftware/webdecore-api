@@ -13,6 +13,11 @@ Rails.application.routes.draw do
   resources :categories
   resources :animation_datas
   resources :user_animations, except: [:new]
+  resources :themes
+
+  scope "themes/:theme_id" do
+    get "demo" => 'themes#demo'
+  end
 
   get 'user_animations/:id' => 'user_animations#inactive'
   get 'users_details' => 'dashboard#users_details'
