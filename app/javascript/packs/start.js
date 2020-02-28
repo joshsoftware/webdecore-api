@@ -77,7 +77,7 @@ function playAnimation(animation){
     var element = animData.container.getElementsByClassName("lottie")[0];
     element.parentNode.removeChild(element);
     setTimeout(timer, frequency*1000);
-    }
+  }
   anim.onComplete = function() {
     var element = animData.container.getElementsByClassName("lottie")[0];
     element.parentNode.removeChild(element);

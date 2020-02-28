@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 require 'jsobfu'
 class Users::ConfirmationsController < Devise::ConfirmationsController
-
   def show
     self.resource = resource_class.find_by_confirmation_token(params[:confirmation_token]) if params[:confirmation_token].present?
     super if resource.nil? || resource.confirmed?
@@ -52,9 +51,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
     file = File.open(file_name, 'r')
     file_data = file.read
     file.reopen(file_name, 'w')
-    jsobfus = JSObfu.new(file_data)
-    obfuscated_data = jsobfus.obfuscate
-    file.write(obfuscated_data)
+    file.write(JSObfu.new(file_data).obfuscate)
     file.close
   end
 
