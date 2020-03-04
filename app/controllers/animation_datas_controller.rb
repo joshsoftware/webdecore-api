@@ -17,14 +17,35 @@ class AnimationDatasController < ApplicationController
     @secondary_category_id = params[:sub_category_id]
   end
 
-  def demo
-    @animation = AnimationData.find_by(id: params[:animation_data_id])
-    if (@animation.nil?)
+  def my_animations
+    @animations = AnimationData.where(user_id: current_user)
+    if @animations.empty?
       flash[:alert] = t('animation_not_found')
-      redirect_to animations_path
-    else
-      @animation_json = @animation.animation_json.to_json
+      redirect_to dashboard_index_path
     end
+  end
+
+  def demo
+    # if current_user.role == 'admin'
+      @animation_json = AnimationData.where(user_id: current_user).
+                                      or(AnimationData.where.not(category_id: nil)).find_by(id: params[:animation_data_id])
+      if (@animation_json.nil?)
+        flash[:alert] = t('animation_not_found')
+        redirect_to animations_path
+      else
+        @animation_json = @animation_json.animation_json.to_json
+      end
+    # else
+    #   @animation_json = AnimationData.where(user_id: current_user).
+    #                                   or(AnimationData.where.not(category_id: nil)).find_by(id: params[:animation_data_id])
+    #   pp @animation_json
+    #   if (@animation_json.nil?)
+    #     flash[:alert] = t('animation_not_found')
+    #     redirect_to my_animations_path
+    #   else
+    #     @animation_json = @animation_json.animation_json.to_json
+    #   end
+    # end
   end
 
   def new
@@ -33,16 +54,31 @@ class AnimationDatasController < ApplicationController
   end
 
   def create
-    file_data = params[:animation_datas][:animation_json].read
-    params[:animation_datas][:animation_json] = file_data.as_json
-    params[:animation_datas][:category_id] = params[:sub_category_id]
-    params[:animation_datas][:animation_json].force_encoding("UTF-8")
-    if AnimationData.create(permit_params)
-      flash[:notice] = t('create_success')
-      redirect_to animations_path
+    if current_user.role == 'user'
+      file_data = params[:animation_datas][:animation_json].read
+      params[:animation_datas][:animation_json] = file_data.as_json
+      params[:animation_datas][:animation_json].force_encoding("UTF-8")
+      params[:animation_datas][:user_id] = current_user.id
+      if AnimationData.create(permit_params)
+        flash[:notice] = t('create_success')
+        redirect_to my_animations_path
+      else
+        flash[:alert] = t('create_error')
+        redirect_to new_path
+      end
     else
-      flash[:alert] = t('create_error')
-      redirect_to new_animation_path
+      file_data = params[:animation_datas][:animation_json].read
+      params[:animation_datas][:animation_json] = file_data.as_json
+      params[:animation_datas][:category_id] = params[:sub_category_id]
+      params[:animation_datas][:animation_json].force_encoding("UTF-8")
+      params[:animation_datas][:user_id] = current_user.id
+      if AnimationData.create(permit_params)
+        flash[:notice] = t('create_success')
+        redirect_to animations_path
+      else
+        flash[:alert] = t('create_error')
+        redirect_to new_animation_path
+      end
     end
   end
 
@@ -73,6 +109,6 @@ class AnimationDatasController < ApplicationController
 
   private
     def permit_params
-      params.require(:animation_datas).permit(:animation_name, :animation_price,:category_id,:picture, :animation_json)
+      params.require(:animation_datas).permit(:animation_name, :animation_price, :category_id, :picture, :animation_json, :user_id)
     end
 end

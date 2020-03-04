@@ -13,3 +13,6 @@
       .row.pt-5.pb-5
         .col-lg-4.offset-lg-4
           = button_to 'Our Animations', categories_path, method: "get", class: "btn btn-success"
+          %br
+          - if current_user.role == 'user'
+            = button_to 'Add Animations', new_path, method: "get", class: "btn btn-success"

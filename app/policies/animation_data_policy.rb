@@ -7,6 +7,6 @@ class AnimationDataPolicy < ApplicationPolicy
   end
 
   def new?
-    @user.role == "admin"
+    @user.role == "admin" || @user.role == "user"
   end
 end
