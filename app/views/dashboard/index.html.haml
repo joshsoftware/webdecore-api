@@ -15,4 +15,4 @@
           = button_to 'Our Animations', categories_path, method: "get", class: "btn btn-success"
           %br
           - if current_user.role == 'user'
-            = button_to 'Add Animations', new_path, method: "get", class: "btn btn-success"
+            = button_to 'Add Animations', new_animation_data_path, method: "get", class: "btn btn-success"
