@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class CategoriesController < ApplicationController
+
+  add_breadcrumb "Category", :categories_path
   def index
     @categories = Category.primary.order(id: :ASC)
   end
@@ -19,22 +21,17 @@ class CategoriesController < ApplicationController
       flash[:alert] = t('create_error')
       redirect_to sub_categories_path(params[:id])
     end
-
   end
 
   def show
     @primary_category = Category.find_by(id: params[:id])
     if !@primary_category.nil? and @primary_category.primarycategory_id.nil?
+      add_breadcrumb "#{@primary_category['category_name']}", sub_categories_path
       @categories = @primary_category.secondary_categories.order(id: :ASC)
-      if @categories.empty?
-        flash[:alert] = t('category_not_found')
-        redirect_to categories_path
-      end
     else
       flash[:alert] = t('category_not_found')
       redirect_to categories_path
     end
-
   end
 
   def new_sub_category
@@ -96,9 +93,8 @@ class CategoriesController < ApplicationController
   end
 
   private
-
-  def permit_params
-    params.require(:category).permit(:category_name, :category_description, :picture)
-  end
+    def permit_params
+      params.require(:category).permit(:category_name, :category_description, :picture)
+    end
 
 end
