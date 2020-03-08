@@ -9,7 +9,7 @@ class User < ApplicationRecord
   validates :email, presence: true, format: { with: valid_email_regex }, uniqueness: true
   valid_contact_regex = /\A[7-9][0-9]{9}\z/
   validates :contact_number, presence: true, format: { with: valid_contact_regex }, uniqueness: true
-  validates :randomhex, uniqueness: true
+  validates :uuid, uniqueness: true
   has_many :user_animations, :dependent => :destroy
   has_many :animation_datas, through: :user_animations, :dependent => :destroy
 

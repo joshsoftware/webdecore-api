@@ -3,7 +3,7 @@ module Api
     class AnimationDatasController < ApplicationController
       skip_before_action :authenticate_user!
       def index
-        user = User.where(randomhex: params['randomhex']).first
+        user = User.where(uuid: params['uuid']).first
         return render json: {} unless user.present?
         @animation_record = UserAnimation.
           where('start_date <= :today_date AND end_date >= :today_date', today_date: Date.today).
