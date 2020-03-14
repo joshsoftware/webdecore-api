@@ -11,7 +11,7 @@ class User < ApplicationRecord
   validates :contact_number, presence: true, format: { with: valid_contact_regex }, uniqueness: true
   validates :uuid, uniqueness: true
   has_many :user_animations, :dependent => :destroy
-  has_many :animation_datas, through: :user_animations, :dependent => :destroy
+  has_many :animation_datas, :dependent => :destroy
 
   before_save :titleize_names
 
