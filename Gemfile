@@ -91,3 +91,5 @@ gem 'rake', '<11'
 gem 'rack-cors', '~> 1.1', '>= 1.1.1'
 
 gem 'jsobfu'
+
+gem 'breadcrumbs_on_rails'

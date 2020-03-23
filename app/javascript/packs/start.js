@@ -16,7 +16,7 @@ window.callback = function(data){
   frequency = sessionStorage.getItem('frequency');
   if(animation === null){
     var xhttp = new XMLHttpRequest();
-    xhttp.open("GET","http://localhost:3000/api/v1/animation_datas?randomhex="+user+"&location="+loc,true);
+    xhttp.open("GET","http://localhost:3000/api/v1/animation_datas?uuid="+user+"&location="+loc,true);
     xhttp.send();
     xhttp.onreadystatechange = function(){
       if(this.readyState == 4 && this.status == 200){

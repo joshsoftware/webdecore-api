@@ -1,22 +1,29 @@
 # frozen_string_literal: true
 class AnimationDatasController < ApplicationController
+
   def show
     @animations = AnimationData.where(category_id: params[:sub_category_id]).order(id: :ASC)
+
     if @animations.empty?
       flash[:alert] = t('animation_not_found')
       redirect_to sub_categories_path
+    else
+      sub_category = Category.find(params[:sub_category_id])
+      add_breadcrumb "Category", categories_path
+      add_breadcrumb sub_category.primarycategory.category_name, sub_categories_path
+      add_breadcrumb sub_category.category_name
     end
     @primary_category_id = params[:id]
     @secondary_category_id = params[:sub_category_id]
   end
 
   def demo
-    @animation_json = AnimationData.find_by(id: params[:animation_data_id])
-    if (@animation_json.nil?)
+    @animation = AnimationData.find_by(id: params[:animation_data_id])
+    if (@animation.nil?)
       flash[:alert] = t('animation_not_found')
       redirect_to animations_path
     else
-      @animation_json = @animation_json.animation_json.to_json
+      @animation_json = @animation.animation_json.to_json
     end
   end
 

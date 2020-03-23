@@ -12,7 +12,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     super
-    resource.randomhex = SecureRandom.uuid
+    resource.uuid = SecureRandom.uuid
     resource.save
   end
 
@@ -48,6 +48,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def delete_user_file
-    File.delete("public/users/#{current_user.randomhex}.min.js")
+    File.delete("public/users/#{current_user.uuid}.min.js")
   end
 end
