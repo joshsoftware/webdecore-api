@@ -6,7 +6,6 @@ class AnimationDatasController < ApplicationController
 
     if @animations.empty?
       flash[:alert] = t('animation_not_found')
-      redirect_to sub_categories_path
     else
       sub_category = Category.find(params[:sub_category_id])
       add_breadcrumb "Category", categories_path
@@ -43,7 +42,9 @@ class AnimationDatasController < ApplicationController
     file_data = params[:animation_datas][:animation_json].read
     params[:animation_datas][:animation_json] = file_data.as_json
     params[:animation_datas][:animation_json].force_encoding("UTF-8")
+    params[:animation_datas][:category_id] = params[:sub_category_id]
     animation = current_user.animation_datas.new(permit_params)
+
     if animation.save!
       flash[:notice] = t('create_success')
       if current_user.role == 'user'

@@ -12,10 +12,9 @@ Rails.application.routes.draw do
   resources :dashboard
   resources :categories
   resources :animation_datas
-  resources :user_animations, except: [:new]
+  resources :user_animations, except: [:show]
 
-  get "animation_datas/new" => "animation_datas#new"
-  post "animation_datas/new" => "animation_datas#create"
+  post "my_animation/new" => "animation_datas#create"
   get "my_animations" => "animation_datas#my_animations"
 
   get 'user_animations/:id' => 'user_animations#inactive'
