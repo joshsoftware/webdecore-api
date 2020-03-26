@@ -12,7 +12,10 @@ Rails.application.routes.draw do
   resources :dashboard
   resources :categories
   resources :animation_datas
-  resources :user_animations, except: [:new]
+  resources :user_animations, except: [:show]
+
+  post "my_animation/new" => "animation_datas#create"
+  get "my_animations" => "animation_datas#my_animations"
 
   get 'user_animations/:id' => 'user_animations#inactive'
   get 'users_details' => 'dashboard#users_details'
@@ -41,6 +44,11 @@ Rails.application.routes.draw do
             delete 'destroy' => 'animation_datas#destroy', as: :destroy_animation
         end
     end
+  end
+
+  scope "animations/:animation_data_id" do
+    get "user_animation_demo" => 'animation_datas#demo'
+    get "purchase_user_animation" => 'user_animations#new'
   end
 
   namespace :api do

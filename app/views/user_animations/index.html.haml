@@ -2,31 +2,33 @@
   %h1 My Orders
   %table.table.table-hover
     %tr
-      %th Primary Category
-      %th Secondary Category
       %th Animation Name
       %th Start Date
       %th End Date
       %th Location
+      %th Status
       %th Animation Price/Day
       %th Amount
-      %th Status
+
       %th.text-center{colspan: 3} Operations
 
     - @animations.each do |anim|
       %tr
-        %td= anim.animation_data.category.primarycategory.category_name
-        %td= anim.animation_data.category.category_name
         %td= anim.animation_data.animation_name
         %td= anim.start_date
         %td= anim.end_date
         %td= anim.location
         %td= anim.status
+        %td= anim.amount
+        %td= anim.amount*((anim.end_date - anim.start_date)+1)
         %td
-          = link_to '', demo_path(anim.animation_data.category.primarycategory_id,
-            anim.animation_data.category.id, anim.animation_data_id), method: "get",
-            class: "fa fa-desktop btn", title: 'Demo'
-
+          -if current_user.role == 'admin'
+            = link_to '', demo_path(anim.animation_data.category.primarycategory_id,
+              anim.animation_data.category.id, anim.animation_data_id), method: "get",
+              class: "fa fa-desktop btn", title: 'Demo'
+          -else
+            = link_to '', user_animation_demo_path(anim.animation_data_id), method: "get",
+              class: "fa fa-desktop btn", title: 'Demo'
           -if anim.status == 'Active'
             -if anim.start_date > Date.today
               = link_to '', user_animation_path(anim.id), method: "delete", data:{confirm: "are you sure?"},

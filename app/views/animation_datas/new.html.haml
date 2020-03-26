@@ -1,10 +1,15 @@
 %div.offset-sm-11
-  = link_to 'Back', animations_path, class: "btn btn-success"
+  - if current_user.role == 'admin'
+    = link_to 'Back', animations_path, class: "btn btn-success"
+    - path = new_animation_path
+  - else
+    = link_to 'Back', dashboard_index_path, class: "btn btn-success"
+    - path = my_animation_new_path
 .container-fluid
   .row
     .col-md-4.offset-md-4
       %h3 New Animation Form
-      = bootstrap_form_with scope: :animation_datas, url: new_animation_path(),local: true do |form|
+      = bootstrap_form_with scope: :animation_datas, url: path, local: true do |form|
         %p
           = form.text_field :animation_name, required: true
         %p

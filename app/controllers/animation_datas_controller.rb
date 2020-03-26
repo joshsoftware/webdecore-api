@@ -6,7 +6,6 @@ class AnimationDatasController < ApplicationController
 
     if @animations.empty?
       flash[:alert] = t('animation_not_found')
-      redirect_to sub_categories_path
     else
       sub_category = Category.find(params[:sub_category_id])
       add_breadcrumb "Category", categories_path
@@ -15,6 +14,14 @@ class AnimationDatasController < ApplicationController
     end
     @primary_category_id = params[:id]
     @secondary_category_id = params[:sub_category_id]
+  end
+
+  def my_animations
+    @animations = AnimationData.where(user_id: current_user)
+    if @animations.empty?
+      flash[:alert] = t('animation_not_found')
+      redirect_to dashboard_index_path
+    end
   end
 
   def demo
@@ -29,20 +36,29 @@ class AnimationDatasController < ApplicationController
 
   def new
     @new_animation = AnimationData.new
-    authorize @new_animation
   end
 
   def create
     file_data = params[:animation_datas][:animation_json].read
     params[:animation_datas][:animation_json] = file_data.as_json
-    params[:animation_datas][:category_id] = params[:sub_category_id]
     params[:animation_datas][:animation_json].force_encoding("UTF-8")
-    if AnimationData.create(permit_params)
+    params[:animation_datas][:category_id] = params[:sub_category_id]
+    animation = current_user.animation_datas.new(permit_params)
+
+    if animation.save!
       flash[:notice] = t('create_success')
-      redirect_to animations_path
+      if current_user.role == 'user'
+        redirect_to my_animations_path
+      else
+        redirect_to animations_path
+      end
     else
       flash[:alert] = t('create_error')
-      redirect_to new_animation_path
+      if current_user.role == 'user'
+        redirect_to new_animation_data_path
+      else
+        redirect_to new_animation_path
+      end
     end
   end
 
@@ -73,6 +89,6 @@ class AnimationDatasController < ApplicationController
 
   private
     def permit_params
-      params.require(:animation_datas).permit(:animation_name, :animation_price,:category_id,:picture, :animation_json)
+      params.require(:animation_datas).permit(:animation_name, :animation_price, :category_id, :picture, :animation_json)
     end
 end
