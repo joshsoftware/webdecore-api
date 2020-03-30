@@ -47,3 +47,5 @@ en:
   delete_success: "Successfully deleted"
   deactivate_success: "Successfully dectivated"
   animation_conflict_for_same_date_location: "Animation is already present for that date and location"
+  user:
+    profile_update: "Profile Updated Successfully"
