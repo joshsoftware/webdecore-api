@@ -13,6 +13,7 @@ class UserAnimationsController < ApplicationController
   end
 
   def create
+
     if validate_date
       user_animation = current_user.user_animations.new(permit_params)
       user_animation.status = 'Active'
@@ -61,17 +62,11 @@ class UserAnimationsController < ApplicationController
   def inactive
     order = UserAnimation.where(id: params[:id]).first
     if order.present?
-      if order.update!(status: 'Inactive')
-        flash[:notice] = t('deactivate_success')
-        redirect_to user_animations_path
-      else
-        flash[:notice] = t('deactivate_error')
-        redirect_to user_animations_path
-      end
+      order.update!(status: 'Inactive') ?  flash[:notice] = t('deactivate_success') : flash[:alert] = t('deactivate_error')
     else
       flash[:alert] = t('order_not_found')
-      redirect_to user_animations_path
     end
+    redirect_to user_animations_path
   end
 
   private
@@ -86,10 +81,13 @@ class UserAnimationsController < ApplicationController
     new_start = params[:user_animation][:start_date]
     new_end   = params[:user_animation][:end_date]
     location  = params[:user_animation][:location]
-    @users = UserAnimation.where(user_id: current_user.id, location: location, status: 'Active')
-    @users.none? do |user|
-      (new_start.to_date >= user.start_date && new_start.to_date <= user.end_date) ||
-      (new_start.to_date <= user.start_date && new_end.to_date >= user.start_date)
+    invalid_date = (new_start.to_date < Date.today || new_end.to_date < Date.today)
+    if !invalid_date
+      @users = UserAnimation.where(user_id: current_user.id, location: location, status: 'Active')
+      @users.none? do |user|
+        (new_start.to_date >= user.start_date && new_start.to_date <= user.end_date) ||
+        (new_start.to_date <= user.start_date && new_end.to_date >= user.start_date)
+      end
     end
   end
 
@@ -97,12 +95,15 @@ class UserAnimationsController < ApplicationController
     new_start = params[:user_animation][:start_date]
     new_end = params[:user_animation][:end_date]
     location = params[:user_animation][:location]
-    @orders = UserAnimation.
-      where(user_id: current_user.id, location: location, status: 'Active').
-      where.not(id: params[:id])
-    @orders.none? do |order|
-      (new_start.to_date >= order.start_date && new_start.to_date <= order.end_date) ||
-      (new_start.to_date <= order.start_date && new_end.to_date >= order.start_date)
+    invalid_date = (new_start.to_date < Date.today || new_end.to_date < Date.today)
+    if !invalid_date
+      @orders = UserAnimation.
+        where(user_id: current_user.id, location: location, status: 'Active').
+        where.not(id: params[:id])
+      @orders.none? do |order|
+        (new_start.to_date >= order.start_date && new_start.to_date <= order.end_date) ||
+        (new_start.to_date <= order.start_date && new_end.to_date >= order.start_date)
+      end
     end
   end
 

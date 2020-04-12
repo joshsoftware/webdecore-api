@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'factories/categories'
-
 RSpec.describe Category, type: :model do
   before(:each) do
     @category = create :category

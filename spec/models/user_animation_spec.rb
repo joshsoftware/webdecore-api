@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'factories/user_animations'
 
 RSpec.describe UserAnimation, type: :model do
   before(:each) do

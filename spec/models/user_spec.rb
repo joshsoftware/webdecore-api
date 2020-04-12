@@ -1,6 +1,4 @@
 require 'rails_helper'
-require 'factories/users'
-
 RSpec.describe User, type: :model do
   before(:each) do
     @user = create :user
@@ -22,7 +20,7 @@ RSpec.describe User, type: :model do
   end
 
   it 'should not save user without valid contact number' do
-    user = build(:user, contact_number: "abcdefgh")
+    user = build(:user, contact_number: 'abcd')
     expect(user.valid?).to eq false
     expect(user.save). to eq false
   end
@@ -36,6 +34,18 @@ RSpec.describe User, type: :model do
     user = build(:user, email: "josh123")
     expect(user.valid?).to eq false
     expect(user.save). to eq false
+  end
+
+  it 'password and confirm password does not match' do
+    user = build(:user, email: "xyz@josh.com", password:'1234', password_confirmation: '1222')
+    expect(user.password_match?).to eq false
+  end
+
+  it 'should save if password and confirm password match' do
+    user = build(:user, email: "joshemail@josh.com", contact_number: '9123456789',
+      password: '1234', password_confirmation: '1234')
+    expect(user.password_match?).to eq true
+    expect(user.save). to eq true
   end
 
 end
