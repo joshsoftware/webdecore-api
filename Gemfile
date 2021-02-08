@@ -29,7 +29,7 @@ gem 'bootstrap_form', '~> 4.3'
 gem 'jquery-rails'
 gem 'popper_js', '~> 1.14.5'
 
-gem 'carrierwave', '~> 2.0'
+gem 'carrierwave', '~> 2.1'
 
 gem 'net-ssh'
 
